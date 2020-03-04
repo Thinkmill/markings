@@ -1,0 +1,23 @@
+{
+  "name": "@markings/cli",
+  "version": "0.0.0",
+  "main": "dist/cli.cjs.js",
+  "module": "dist/cli.esm.js",
+  "license": "MIT",
+  "bin": {
+    "markings": "./bin.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.5",
+    "chalk": "^2.4.2",
+    "fs-extra": "^8.1.0",
+    "meow": "^5.0.0",
+    "normalize-path": "^3.0.0",
+    "p-limit": "^2.2.1"
+  },
+  "devDependencies": {
+    "fixturez": "^1.1.0",
+    "strip-ansi": "^6.0.0"
+  },
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/cli"
+}

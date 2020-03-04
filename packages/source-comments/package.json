@@ -1,0 +1,8 @@
+{
+  "name": "@markings/source-comments",
+  "version": "0.0.0",
+  "main": "dist/source-comments.cjs.js",
+  "module": "dist/source-comments.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/source-comments"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@markings/output-html",
+  "version": "0.0.0",
+  "main": "dist/output-html.cjs.js",
+  "module": "dist/output-html.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-html"
+}

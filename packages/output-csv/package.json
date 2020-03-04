@@ -1,0 +1,8 @@
+{
+  "name": "@markings/output-json",
+  "version": "0.0.0",
+  "main": "dist/output-json.cjs.js",
+  "module": "dist/output-json.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-csv"
+}
