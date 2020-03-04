@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
   "repository": "https://github.com/Thinkmill/markings",
   "dependencies": {
     "@babel/core": "^7.8.6",
@@ -35,9 +32,11 @@
   },
   "prettier": {},
   "scripts": {
+    "preinstall": "node -e \"!process.env.npm_config_user_agent.startsWith('pnpm/') && !console.log('Use https://pnpm.js.org/ to install dependencies in this repository\\n') && process.exit(1)\"",
     "postinstall": "preconstruct dev && manypkg check",
     "release": "yarn preconstruct build && yarn changeset publish",
     "test-gatsby": "cd test-gatsby && gatsby develop",
-    "test": "jest"
+    "test": "jest",
+    "types": "tsc"
   }
 }

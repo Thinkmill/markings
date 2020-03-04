@@ -14,7 +14,8 @@
     "fs-extra": "^8.1.0",
     "meow": "^5.0.0",
     "normalize-path": "^3.0.0",
-    "p-limit": "^2.2.1"
+    "p-limit": "^2.2.1",
+    "@markings/types": "^0.0.0"
   },
   "devDependencies": {
     "fixturez": "^1.1.0",

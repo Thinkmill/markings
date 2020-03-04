@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "@markings/types",
+  "version": "0.0.0",
+  "main": "dist/types.cjs.js",
+  "module": "dist/types.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/types",
+  "dependencies": {
+    "@babel/types": "^7.8.6"
+  }
+}
