@@ -1,6 +1,6 @@
 {
   "name": "@markings/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "@babel/parser": "^7.8.6",
     "@babel/runtime": "^7.5.5",
     "@babel/traverse": "^7.8.6",
-    "@markings/types": "^0.0.1",
+    "@markings/types": "^0.0.2",
     "@types/babel__traverse": "^7.0.9",
     "chalk": "^2.4.2",
     "fs-extra": "^8.1.0",

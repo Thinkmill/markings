@@ -1,6 +1,6 @@
 {
   "name": "@markings/source-react-note",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/source-react-note.cjs.js",
   "module": "dist/source-react-note.esm.js",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "@babel/code-frame": "^7.8.3",
     "@babel/traverse": "^7.8.6",
     "@babel/types": "^7.8.6",
-    "@markings/types": "^0.0.1",
+    "@markings/types": "^0.0.2",
     "@types/babel__code-frame": "^7.0.1",
     "@types/babel__traverse": "^7.0.9"
   }
