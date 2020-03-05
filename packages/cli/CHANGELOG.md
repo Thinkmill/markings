@@ -1,5 +1,11 @@
 # @markings/cli
 
+## 0.0.5
+
+### Patch Changes
+
+- [`a2a0923`](https://github.com/Thinkmill/markings/commit/a2a092304533f03beaddd7062fdd8511f55f2019) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Filter out node_modules and .d.ts files when extracting markings
+
 ## 0.0.4
 
 ### Patch Changes

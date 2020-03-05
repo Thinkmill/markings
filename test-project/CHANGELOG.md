@@ -1,5 +1,12 @@
 # @markings/test-project
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`a2a0923`](https://github.com/Thinkmill/markings/commit/a2a092304533f03beaddd7062fdd8511f55f2019)]:
+  - @markings/cli@0.0.5
+
 ## 1.0.4
 
 ### Patch Changes
