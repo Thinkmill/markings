@@ -8,19 +8,24 @@
     "@markings/output-json": "^0.0.0",
     "@markings/react-note": "^0.0.0",
     "@markings/source-react-note": "^0.0.0",
+    "@preconstruct/next": "^1.0.1",
+    "@types/node": "^13.7.7",
     "@types/react": "^16.9.23",
-    "react": "^16.13.0"
+    "next": "^9.2.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "scripts": {
     "markings": "markings",
-    "markings:inspect": "NODE_OPTIONS=--inspect-brk markings"
+    "markings:inspect": "NODE_OPTIONS=--inspect-brk markings",
+    "start": "next"
   },
   "markings": {
     "sources": [
       {
         "source": "@markings/source-react-note",
         "include": [
-          "index.tsx"
+          "test-file.tsx"
         ]
       }
     ],
