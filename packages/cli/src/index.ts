@@ -43,8 +43,8 @@ let parserPlugins: ParserPlugin[] = [
   }
 
   const req = mod.createRequire
-    ? mod.createRequire(cwd)
-    : mod.createRequireFromPath(cwd);
+    ? mod.createRequire(path.join(cwd, "package.json"))
+    : mod.createRequireFromPath(path.join(cwd, "package.json"));
 
   let markings: Marking[] = [];
 
