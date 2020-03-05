@@ -1,5 +1,13 @@
 # @markings/test-project
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`0c6e806`](https://github.com/Thinkmill/markings/commit/0c6e80673dd9149842a659c5160001d1f7cf972a)]:
+  - @markings/cli@0.0.4
+  - @markings/source-react-note@0.0.3
+
 ## 1.0.3
 
 ### Patch Changes

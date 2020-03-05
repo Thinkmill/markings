@@ -1,5 +1,11 @@
 # @markings/source-react-note
 
+## 0.0.3
+
+### Patch Changes
+
+- [`0c6e806`](https://github.com/Thinkmill/markings/commit/0c6e80673dd9149842a659c5160001d1f7cf972a) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use `transform` from `@babel/core` instead of `@babel/parser` and `@babel/traverse` directly
+
 ## 0.0.2
 
 ### Patch Changes
