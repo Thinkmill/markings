@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@markings/cli": "^0.0.5",
+    "@markings/output-csv": "^0.0.0",
     "@markings/output-json": "^0.0.2",
     "@markings/react-note": "^0.0.0",
     "@markings/source-react-note": "^0.0.3",
@@ -33,6 +34,10 @@
       {
         "output": "@markings/output-json",
         "filename": "output.json"
+      },
+      {
+        "output": "@markings/output-csv",
+        "filename": "output.csv"
       }
     ]
   }

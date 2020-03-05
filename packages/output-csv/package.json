@@ -1,12 +1,12 @@
 {
-  "private": true,
   "name": "@markings/output-csv",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "main": "dist/output-csv.cjs.js",
   "module": "dist/output-csv.esm.js",
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-csv",
   "dependencies": {
-    "@markings/types": "^0.0.2"
+    "@markings/types": "^0.0.2",
+    "csv-stringify": "^5.3.6"
   }
 }

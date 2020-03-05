@@ -6,4 +6,6 @@ dist/
 public
 scratchings.js
 test-project/output.json
+test-project/output.csv
+test-project/output.html
 .next
