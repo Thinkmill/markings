@@ -2,6 +2,7 @@ node_modules/
 dist/
 *.log
 .cache
+.DS_Store
 public
 scratchings.js
 test-project/output.json
