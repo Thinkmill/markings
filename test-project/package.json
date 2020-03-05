@@ -1,13 +1,13 @@
 {
   "name": "@markings/test-project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "@markings/cli": "^0.0.0",
-    "@markings/output-json": "^0.0.0",
+    "@markings/cli": "^0.0.1",
+    "@markings/output-json": "^0.0.1",
     "@markings/react-note": "^0.0.0",
-    "@markings/source-react-note": "^0.0.0",
+    "@markings/source-react-note": "^0.0.1",
     "@preconstruct/next": "^1.0.1",
     "@types/node": "^13.7.7",
     "@types/react": "^16.9.23",

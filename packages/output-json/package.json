@@ -1,11 +1,11 @@
 {
   "name": "@markings/output-json",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/output-json.cjs.js",
   "module": "dist/output-json.esm.js",
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-json",
   "dependencies": {
-    "@markings/types": "^0.0.0"
+    "@markings/types": "^0.0.1"
   }
 }
