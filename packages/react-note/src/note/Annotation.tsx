@@ -11,7 +11,6 @@ import {
   useAnnotationRegistry
 } from "./AnnotationContext";
 import { AnnotationPanel } from "./AnnotationPanel";
-import { Note, NoteProps } from "./Note";
 
 type TAnnotations = { [id: string]: AnnotationType };
 
@@ -47,9 +46,10 @@ export const AnnotationProvider = ({ children, config }: ProviderProps) => {
 };
 
 /**
- * Registers annotations and wraps a unique attribute around the Note component
+ * Registers annotations and wraps a unique attribute around the target
  */
-export const Annotation = (props: NoteProps) => {
+type NoteProps = { children: ReactNode } & AnnotationType;
+export const Annotation = ({ children, ...props }: NoteProps) => {
   const { register, unregister } = useAnnotationRegistry();
   const annotationId = useRef<string>();
 
@@ -66,7 +66,7 @@ export const Annotation = (props: NoteProps) => {
       data-react-annotation-id={annotationId.current}
       style={{ position: "relative" }}
     >
-      <Note {...props} />
+      {children}
     </div>
   );
 };
