@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@markings/source-react-note",
   "version": "0.0.0",
   "main": "dist/source-react-note.cjs.js",

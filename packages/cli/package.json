@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@markings/cli",
   "version": "0.0.0",
   "main": "dist/cli.cjs.js",
