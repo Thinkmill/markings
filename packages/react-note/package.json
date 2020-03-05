@@ -6,7 +6,26 @@
   "module": "dist/react-note.esm.js",
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/react-note",
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production"
+  },
   "peerDependencies": {
     "react": "^16.13.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "@emotion/core": "^10.0.28",
+    "@popperjs/core": "^2.0.6",
+    "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
