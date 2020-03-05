@@ -23,7 +23,7 @@ let getValueFromJSXAttribute = (
 export const source: Source = {
   type: "babel",
   visitor: {
-    JSXOpeningElement(path, { addMarking }) {
+    JSXOpeningElement(path, { addMarking, filename }) {
       if (t.isJSXIdentifier(path.node.name) && path.node.name.name === "Note") {
         let details: string | undefined;
         let heading: string | undefined;
@@ -61,15 +61,13 @@ export const source: Source = {
             "details must be passed to the Note component"
           );
         }
-        console.log(JSON.stringify(path.hub.file, null, 2));
-        throw new Error(JSON.stringify(path.hub.file, null, 2));
         addMarking({
           details,
           heading: heading || purpose,
           purpose,
           location: {
-            filename: path.hub.file.filename,
-            line: path.node.loc?.start.line
+            filename,
+            line: path.node.loc!.start.line
           }
         });
       }

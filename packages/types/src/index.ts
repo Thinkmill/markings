@@ -18,6 +18,7 @@ export type Source = {
   type: "babel";
   visitor: Visitor<{
     addMarking: (marking: Marking) => void;
+    filename: string;
   }>;
 };
 

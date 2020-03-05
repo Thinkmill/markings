@@ -52,7 +52,7 @@ let parserPlugins: ParserPlugin[] = [
   await Promise.all(
     config.sources.map(async sourceConfig => {
       let result = await globby(sourceConfig.include, { cwd, absolute: true });
-      let plugin: Source = req(sourceConfig.source);
+      let plugin: Source = req(sourceConfig.source).source;
       // TODO: limit the things
       await Promise.all(
         result.map(async filename => {
@@ -66,7 +66,8 @@ let parserPlugins: ParserPlugin[] = [
           traverse(ast, plugin.visitor, undefined, {
             addMarking: marking => {
               markings.push(marking);
-            }
+            },
+            filename: path.relative(cwd, filename)
           });
         })
       );
