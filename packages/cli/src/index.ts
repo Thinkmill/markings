@@ -8,6 +8,8 @@ import mod from "module";
 import globby from "globby";
 import { ParserPlugin } from "@babel/parser";
 import { transform, PluginObj } from "@babel/core";
+// @ts-ignore
+import { visitors as visitorsUtils } from "@babel/traverse";
 
 let parserPlugins: ParserPlugin[] = [
   "asyncGenerators",
@@ -49,47 +51,67 @@ let parserPlugins: ParserPlugin[] = [
 
   let markings: Marking[] = [];
 
-  // TODO: use workers for all the things
+  let visitorsByFilename = new Map<string, Set<Source["visitor"]>>();
+
+  let addVisitorToFile = (filename: string, visitor: Source["visitor"]) => {
+    if (!visitorsByFilename.has(filename)) {
+      visitorsByFilename.set(filename, new Set());
+    }
+    let visitors = visitorsByFilename.get(filename)!;
+    visitors.add(visitor);
+  };
+
   await Promise.all(
     config.sources.map(async sourceConfig => {
-      let result = await globby(sourceConfig.include, { cwd, absolute: true });
+      let result = await globby(sourceConfig.include, {
+        cwd,
+        absolute: true,
+        ignore: ["**/node_modules/**/*"]
+      });
       let plugin: Source = req(sourceConfig.source).source;
-      // TODO: limit the things
-      await Promise.all(
-        result.map(async filename => {
-          let contents = await fs.readFile(filename, "utf8");
-          transform(contents, {
-            code: false,
-            configFile: false,
-            babelrc: false,
-            filename,
-            sourceRoot: cwd,
-            filenameRelative: nodePath.relative(cwd, filename),
-            parserOpts: {
-              plugins: parserPlugins.concat(
-                /\.tsx?$/.test(filename) ? "typescript" : "flow"
-              )
-            },
-            plugins: [
-              (): PluginObj => {
-                return {
-                  visitor: {
-                    Program(path) {
-                      path.traverse(plugin.visitor, {
-                        addMarking: marking => {
-                          markings.push(marking);
-                        },
-                        filename: nodePath.relative(cwd, filename),
-                        code: contents
-                      });
-                    }
-                  }
-                };
+
+      for (let filename of result) {
+        if (/\.[jt]sx?$/.test(filename) && !/\.d\.ts$/.test(filename)) {
+          addVisitorToFile(filename, plugin.visitor);
+        }
+      }
+    })
+  );
+  // TODO: do extraction work in worker threads
+  await Promise.all(
+    [...visitorsByFilename.entries()].map(async ([filename, visitors]) => {
+      let visitor: Source["visitor"] = visitorsUtils.merge([...visitors], []);
+      let contents = await fs.readFile(filename, "utf8");
+      transform(contents, {
+        code: false,
+        configFile: false,
+        babelrc: false,
+        filename,
+        sourceRoot: cwd,
+        filenameRelative: nodePath.relative(cwd, filename),
+        parserOpts: {
+          plugins: parserPlugins.concat(
+            /\.tsx?$/.test(filename) ? "typescript" : "flow"
+          )
+        },
+        plugins: [
+          (): PluginObj => {
+            return {
+              visitor: {
+                Program(path) {
+                  path.traverse(visitor, {
+                    addMarking: marking => {
+                      markings.push(marking);
+                    },
+                    filename: nodePath.relative(cwd, filename),
+                    code: contents
+                  });
+                }
               }
-            ]
-          });
-        })
-      );
+            };
+          }
+        ]
+      });
     })
   );
   await Promise.all(
