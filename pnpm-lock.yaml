@@ -32,10 +32,12 @@ importers:
       typescript: ^3.8.3
   packages/cli:
     dependencies:
+      '@babel/core': 7.8.7
       '@babel/parser': 7.8.6
       '@babel/runtime': 7.8.4
       '@babel/traverse': 7.8.6
       '@markings/types': 'link:../types'
+      '@types/babel__core': 7.1.6
       '@types/babel__traverse': 7.0.9
       chalk: 2.4.2
       fs-extra: 8.1.0
@@ -47,10 +49,12 @@ importers:
       fixturez: 1.1.0
       strip-ansi: 6.0.0
     specifiers:
+      '@babel/core': ^7.8.7
       '@babel/parser': ^7.8.6
       '@babel/runtime': ^7.5.5
       '@babel/traverse': ^7.8.6
       '@markings/types': ^0.0.2
+      '@types/babel__core': ^7.1.6
       '@types/babel__traverse': ^7.0.9
       chalk: ^2.4.2
       fixturez: ^1.1.0
@@ -84,20 +88,16 @@ importers:
       '@markings/types': ^0.0.2
   packages/source-react-note:
     dependencies:
-      '@babel/code-frame': 7.8.3
       '@babel/runtime': 7.8.7
       '@babel/traverse': 7.8.6
       '@babel/types': 7.8.6
       '@markings/types': 'link:../types'
-      '@types/babel__code-frame': 7.0.1
       '@types/babel__traverse': 7.0.9
     specifiers:
-      '@babel/code-frame': ^7.8.3
       '@babel/runtime': ^7.8.7
       '@babel/traverse': ^7.8.6
       '@babel/types': ^7.8.6
       '@markings/types': ^0.0.2
-      '@types/babel__code-frame': ^7.0.1
       '@types/babel__traverse': ^7.0.9
   packages/types:
     dependencies:
@@ -239,6 +239,28 @@ packages:
       node: '>=6.9.0'
     resolution:
       integrity: sha512-Sheg7yEJD51YHAvLEV/7Uvw95AeWqYPL3Vk3zGujJKIhJ+8oLw2ALaf3hbucILhKsgSoADOvtKRJuNVdcJkOrg==
+  /@babel/core/7.8.7:
+    dependencies:
+      '@babel/code-frame': 7.8.3
+      '@babel/generator': 7.8.7
+      '@babel/helpers': 7.8.4
+      '@babel/parser': 7.8.7
+      '@babel/template': 7.8.6
+      '@babel/traverse': 7.8.6
+      '@babel/types': 7.8.7
+      convert-source-map: 1.7.0
+      debug: 4.1.1
+      gensync: 1.0.0-beta.1
+      json5: 2.1.1
+      lodash: 4.17.15
+      resolve: 1.15.1
+      semver: 5.7.1
+      source-map: 0.5.7
+    dev: false
+    engines:
+      node: '>=6.9.0'
+    resolution:
+      integrity: sha512-rBlqF3Yko9cynC5CCFy6+K/w2N+Sq/ff2BPy+Krp7rHlABIr5epbA7OxVeKoMHB39LZOp1UY5SuLjy6uWi35yA==
   /@babel/generator/7.8.6:
     dependencies:
       '@babel/types': 7.8.6
@@ -2477,10 +2499,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Debi3Baff1Qu1Unc3mjJ96MgpbwTn43S1+9yJ0llWygPwDNu2aaWBD6yc9y/Z8XDRNhx7U+u2UDg2OGQXkclUQ==
-  /@types/babel__code-frame/7.0.1:
-    dev: false
-    resolution:
-      integrity: sha512-FFfbQozKxYmOnCKFYV+EQprjBI7u2yaNc2ly/K9AhzyC8MzXtCtSRqptpw+HUJxhwCOo5mLwf1ATmzyhOaVbDg==
   /@types/babel__core/7.1.6:
     dependencies:
       '@babel/parser': 7.8.7

@@ -1,7 +1,6 @@
 import { Source, Purpose, PURPOSES } from "@markings/types";
 import * as t from "@babel/types";
 import { NodePath } from "@babel/traverse";
-import { CodeFrameError } from "./code-frame-error";
 
 let getValueFromJSXAttribute = (
   attribute: NodePath<t.JSXAttribute>,
@@ -17,10 +16,8 @@ let getValueFromJSXAttribute = (
       return expression.node.value;
     }
   }
-  throw new CodeFrameError(
-    "attributes on the Note component must be string literals",
-    attribute.node,
-    code
+  throw attribute.buildCodeFrameError(
+    "attributes on the Note component must be string literals"
   );
 };
 
@@ -44,33 +41,25 @@ export const source: Source = {
             if (attribute.node.name.name === "purpose") {
               purpose = getValueFromJSXAttribute(attribute, code);
               if (!PURPOSES.includes(purpose)) {
-                throw new CodeFrameError(
-                  `Purpose must be one of ${PURPOSES.join(", ")}`,
-                  attribute.node,
-                  code
+                throw attribute.buildCodeFrameError(
+                  `Purpose must be one of ${PURPOSES.join(", ")}`
                 );
               }
             }
           } else {
-            throw new CodeFrameError(
-              "You cannot spread props on a Note component",
-              attribute.node,
-              code
+            throw path.buildCodeFrameError(
+              "You cannot spread props on a Note component"
             );
           }
         }
         if (purpose === undefined) {
-          throw new CodeFrameError(
-            "purpose must be passed to the Note component",
-            path.node,
-            code
+          throw path.buildCodeFrameError(
+            "purpose must be passed to the Note component"
           );
         }
         if (details === undefined) {
-          throw new CodeFrameError(
-            "details must be passed to the Note component",
-            path.node,
-            code
+          throw path.buildCodeFrameError(
+            "details must be passed to the Note component"
           );
         }
         addMarking({

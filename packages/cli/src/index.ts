@@ -1,14 +1,13 @@
 // @flow
 import * as logger from "./logger";
 import fs from "fs-extra";
-import path from "path";
+import nodePath from "path";
 import { ExitError } from "./errors";
-import pLimit from "p-limit";
 import { Config, Marking, Source, Output } from "@markings/types";
 import mod from "module";
 import globby from "globby";
-import { parse, ParserPlugin } from "@babel/parser";
-import traverse from "@babel/traverse";
+import { ParserPlugin } from "@babel/parser";
+import { transform, PluginObj } from "@babel/core";
 
 let parserPlugins: ParserPlugin[] = [
   "asyncGenerators",
@@ -27,7 +26,9 @@ let parserPlugins: ParserPlugin[] = [
 
 (async (cwd = process.cwd()) => {
   let args = process.argv.slice(2);
-  let packageJsonContent = await fs.readJson(path.join(cwd, "package.json"));
+  let packageJsonContent = await fs.readJson(
+    nodePath.join(cwd, "package.json")
+  );
   let config: Config | undefined = packageJsonContent.markings;
   if (!config) {
     logger.error("please configure markings before using the cli");
@@ -43,8 +44,8 @@ let parserPlugins: ParserPlugin[] = [
   }
 
   const req = mod.createRequire
-    ? mod.createRequire(path.join(cwd, "package.json"))
-    : mod.createRequireFromPath(path.join(cwd, "package.json"));
+    ? mod.createRequire(nodePath.join(cwd, "package.json"))
+    : mod.createRequireFromPath(nodePath.join(cwd, "package.json"));
 
   let markings: Marking[] = [];
 
@@ -57,19 +58,35 @@ let parserPlugins: ParserPlugin[] = [
       await Promise.all(
         result.map(async filename => {
           let contents = await fs.readFile(filename, "utf8");
-          let ast = parse(contents, {
-            sourceFilename: filename,
-            plugins: parserPlugins.concat(
-              /\.tsx?$/.test(filename) ? "typescript" : "flow"
-            ),
-            sourceType: "unambiguous"
-          });
-          traverse(ast, plugin.visitor, undefined, {
-            addMarking: marking => {
-              markings.push(marking);
+          transform(contents, {
+            code: false,
+            configFile: false,
+            babelrc: false,
+            filename,
+            sourceRoot: cwd,
+            filenameRelative: nodePath.relative(cwd, filename),
+            parserOpts: {
+              plugins: parserPlugins.concat(
+                /\.tsx?$/.test(filename) ? "typescript" : "flow"
+              )
             },
-            filename: path.relative(cwd, filename),
-            code: contents
+            plugins: [
+              (): PluginObj => {
+                return {
+                  visitor: {
+                    Program(path) {
+                      path.traverse(plugin.visitor, {
+                        addMarking: marking => {
+                          markings.push(marking);
+                        },
+                        filename: nodePath.relative(cwd, filename),
+                        code: contents
+                      });
+                    }
+                  }
+                };
+              }
+            ]
           });
         })
       );
