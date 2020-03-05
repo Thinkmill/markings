@@ -1,5 +1,14 @@
 # @markings/cli
 
+## 0.0.3
+
+### Patch Changes
+
+- [`7d5dbfa`](https://github.com/Thinkmill/markings/commit/7d5dbfa6b57b6ce7166f6cc2efca457e66db9dca) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix code frame errors
+
+- Updated dependencies [[`7d5dbfa`](https://github.com/Thinkmill/markings/commit/7d5dbfa6b57b6ce7166f6cc2efca457e66db9dca)]:
+  - @markings/types@0.0.2
+
 ## 0.0.2
 
 ### Patch Changes
