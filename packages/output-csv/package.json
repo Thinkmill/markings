@@ -1,6 +1,6 @@
 {
   "name": "@markings/output-csv",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/output-csv.cjs.js",
   "module": "dist/output-csv.esm.js",
   "license": "MIT",
