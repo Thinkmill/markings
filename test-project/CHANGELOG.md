@@ -1,5 +1,12 @@
 # @markings/test-project
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`d33de9f`](https://github.com/Thinkmill/markings/commit/d33de9f36e9c93d4f9d4f4e4428b46be78c0a1d5)]:
+  - @markings/output-csv@0.0.1
+
 ## 1.0.5
 
 ### Patch Changes
