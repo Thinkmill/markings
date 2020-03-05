@@ -1,9 +1,11 @@
 import { Source, Purpose, PURPOSES } from "@markings/types";
 import * as t from "@babel/types";
 import { NodePath } from "@babel/traverse";
+import { CodeFrameError } from "./code-frame-error";
 
 let getValueFromJSXAttribute = (
-  attribute: NodePath<t.JSXAttribute>
+  attribute: NodePath<t.JSXAttribute>,
+  code: string
 ): string => {
   let value = attribute.get("value");
   if (value.isStringLiteral()) {
@@ -15,15 +17,17 @@ let getValueFromJSXAttribute = (
       return expression.node.value;
     }
   }
-  throw attribute.buildCodeFrameError(
-    "attributes on the Note component must be string literals"
+  throw new CodeFrameError(
+    "attributes on the Note component must be string literals",
+    attribute.node,
+    code
   );
 };
 
 export const source: Source = {
   type: "babel",
   visitor: {
-    JSXOpeningElement(path, { addMarking, filename }) {
+    JSXOpeningElement(path, { addMarking, filename, code }) {
       if (t.isJSXIdentifier(path.node.name) && path.node.name.name === "Note") {
         let details: string | undefined;
         let heading: string | undefined;
@@ -32,33 +36,41 @@ export const source: Source = {
         for (let attribute of path.get("attributes")) {
           if (attribute.isJSXAttribute()) {
             if (attribute.node.name.name === "details") {
-              details = getValueFromJSXAttribute(attribute);
+              details = getValueFromJSXAttribute(attribute, code);
             }
             if (attribute.node.name.name === "heading") {
-              heading = getValueFromJSXAttribute(attribute);
+              heading = getValueFromJSXAttribute(attribute, code);
             }
             if (attribute.node.name.name === "purpose") {
-              purpose = getValueFromJSXAttribute(attribute);
+              purpose = getValueFromJSXAttribute(attribute, code);
               if (!PURPOSES.includes(purpose)) {
-                throw attribute.buildCodeFrameError(
-                  `Purpose must be one of ${PURPOSES.join(", ")}`
+                throw new CodeFrameError(
+                  `Purpose must be one of ${PURPOSES.join(", ")}`,
+                  attribute.node,
+                  code
                 );
               }
             }
           } else {
-            throw path.buildCodeFrameError(
-              "You cannot spread props on a Note component"
+            throw new CodeFrameError(
+              "You cannot spread props on a Note component",
+              attribute.node,
+              code
             );
           }
         }
         if (purpose === undefined) {
-          throw path.buildCodeFrameError(
-            "purpose must be passed to the Note component"
+          throw new CodeFrameError(
+            "purpose must be passed to the Note component",
+            path.node,
+            code
           );
         }
         if (details === undefined) {
-          throw path.buildCodeFrameError(
-            "details must be passed to the Note component"
+          throw new CodeFrameError(
+            "details must be passed to the Note component",
+            path.node,
+            code
           );
         }
         addMarking({

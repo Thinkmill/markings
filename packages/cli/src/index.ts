@@ -56,7 +56,8 @@ let parserPlugins: ParserPlugin[] = [
       // TODO: limit the things
       await Promise.all(
         result.map(async filename => {
-          let ast = parse(await fs.readFile(filename, "utf8"), {
+          let contents = await fs.readFile(filename, "utf8");
+          let ast = parse(contents, {
             sourceFilename: filename,
             plugins: parserPlugins.concat(
               /\.tsx?$/.test(filename) ? "typescript" : "flow"
@@ -67,7 +68,8 @@ let parserPlugins: ParserPlugin[] = [
             addMarking: marking => {
               markings.push(marking);
             },
-            filename: path.relative(cwd, filename)
+            filename: path.relative(cwd, filename),
+            code: contents
           });
         })
       );

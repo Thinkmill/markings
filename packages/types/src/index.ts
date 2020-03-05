@@ -19,6 +19,7 @@ export type Source = {
   visitor: Visitor<{
     addMarking: (marking: Marking) => void;
     filename: string;
+    code: string;
   }>;
 };
 
