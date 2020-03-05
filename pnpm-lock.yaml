@@ -30,10 +30,14 @@ importers:
       typescript: ^3.8.3
   packages/cli:
     dependencies:
+      '@babel/parser': 7.8.6
       '@babel/runtime': 7.8.4
+      '@babel/traverse': 7.8.6
       '@markings/types': 'link:../types'
+      '@types/babel__traverse': 7.0.9
       chalk: 2.4.2
       fs-extra: 8.1.0
+      globby: 11.0.0
       meow: 5.0.0
       normalize-path: 3.0.0
       p-limit: 2.2.2
@@ -41,30 +45,76 @@ importers:
       fixturez: 1.1.0
       strip-ansi: 6.0.0
     specifiers:
+      '@babel/parser': ^7.8.6
       '@babel/runtime': ^7.5.5
+      '@babel/traverse': ^7.8.6
       '@markings/types': ^0.0.0
+      '@types/babel__traverse': ^7.0.9
       chalk: ^2.4.2
       fixturez: ^1.1.0
       fs-extra: ^8.1.0
+      globby: ^11.0.0
       meow: ^5.0.0
       normalize-path: ^3.0.0
       p-limit: ^2.2.1
       strip-ansi: ^6.0.0
   packages/output-csv:
-    specifiers: {}
+    dependencies:
+      '@markings/types': 'link:../types'
+    specifiers:
+      '@markings/types': ^0.0.0
   packages/output-html:
-    specifiers: {}
+    dependencies:
+      '@markings/types': 'link:../types'
+    specifiers:
+      '@markings/types': ^0.0.0
   packages/output-json:
+    dependencies:
+      '@markings/types': 'link:../types'
+    specifiers:
+      '@markings/types': ^0.0.0
+  packages/react-note:
     specifiers: {}
   packages/source-comments:
-    specifiers: {}
-  packages/source-react:
-    specifiers: {}
+    dependencies:
+      '@markings/types': 'link:../types'
+    specifiers:
+      '@markings/types': ^0.0.0
+  packages/source-react-note:
+    dependencies:
+      '@babel/traverse': 7.8.6
+      '@babel/types': 7.8.6
+      '@markings/types': 'link:../types'
+      '@types/babel__traverse': 7.0.9
+    specifiers:
+      '@babel/traverse': ^7.8.6
+      '@babel/types': ^7.8.6
+      '@markings/types': ^0.0.0
+      '@types/babel__traverse': ^7.0.9
   packages/types:
     dependencies:
+      '@babel/traverse': 7.8.6
       '@babel/types': 7.8.6
+      '@types/babel__traverse': 7.0.9
     specifiers:
+      '@babel/traverse': ^7.8.6
       '@babel/types': ^7.8.6
+      '@types/babel__traverse': ^7.0.9
+  test-project:
+    dependencies:
+      '@markings/cli': 'link:../packages/cli'
+      '@markings/output-json': 'link:../packages/output-json'
+      '@markings/react-note': 'link:../packages/react-note'
+      '@markings/source-react-note': 'link:../packages/source-react-note'
+      '@types/react': 16.9.23
+      react: 16.13.0
+    specifiers:
+      '@markings/cli': ^0.0.0
+      '@markings/output-json': ^0.0.0
+      '@markings/react-note': ^0.0.0
+      '@markings/source-react-note': ^0.0.0
+      '@types/react': ^16.9.23
+      react: ^16.13.0
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.8.3:
@@ -1611,6 +1661,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Uo4chgKbnPNlxQwoFmYIwctkQVkMMmsAoGGU4JKwLuvBefF0pCq4FybNSnfkfRCpC7ZW7kttcC/TrRtAJsvGtg==
+  /@types/prop-types/15.7.3:
+    dev: false
+    resolution:
+      integrity: sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
+  /@types/react/16.9.23:
+    dependencies:
+      '@types/prop-types': 15.7.3
+      csstype: 2.6.9
+    dev: false
+    resolution:
+      integrity: sha512-SsGVT4E7L2wLN3tPYLiF20hmZTPGuzaayVunfgXzUn1x4uHVsKH6QDJQ/TdpHqwsTLd4CwrmQ2vOgxN7gE24gw==
   /@types/resolve/0.0.8:
     dependencies:
       '@types/node': 13.7.7
@@ -2287,6 +2348,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-sEb3XFPx3jNnCAMtqrXPDeSgQr+jojtCeNf8cvMNMh1cG970+lljssvQDzPq6lmmJu2Vhqood/gtEomBiHOGnA==
+  /csstype/2.6.9:
+    dev: false
+    resolution:
+      integrity: sha512-xz39Sb4+OaTsULgUERcCk+TJj8ylkL4aSVDQiX/ksxbELSqwkgt4d4RD7fovIdgJGSuNYqwZEiVjYY5l0ask+Q==
   /csv-generate/3.2.4:
     dev: false
     resolution:
@@ -3009,6 +3074,19 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-7dUi7RvCoT/xast/o/dLN53oqND4yk0nsHkhRgn9w65C4PofCLOoJ39iSOg+qVDdWQPIEj+eszMHQ+aLVwwQSg==
+  /globby/11.0.0:
+    dependencies:
+      array-union: 2.1.0
+      dir-glob: 3.0.1
+      fast-glob: 3.2.2
+      ignore: 5.1.4
+      merge2: 1.3.0
+      slash: 3.0.0
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-iuehFnR3xu5wBBtm4xi0dMe92Ob87ufyu/dHwpDYfbcpYpIbrO5OnS8M1vWvrBhSGEJ3/Ecj7gnX76P8YxpPEg==
   /globby/7.1.1:
     dependencies:
       array-union: 1.0.2
@@ -4553,6 +4631,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
+  /object-assign/4.1.1:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
   /object-copy/0.1.0:
     dependencies:
       copy-descriptor: 0.1.1
@@ -4899,6 +4983,14 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-qIP2lQyCwYbdzcqHIUi2HAxiWixhoM9OdLCWf8txXsapC/X9YdsCoeyRIXE/GP+Q0J37Q7+XN/MFqbUa7IzXNA==
+  /prop-types/15.7.2:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react-is: 16.13.0
+    dev: false
+    resolution:
+      integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
   /pseudomap/1.0.2:
     dev: false
     resolution:
@@ -4942,6 +5034,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
+  /react/16.13.0:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      prop-types: 15.7.2
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
   /read-pkg-up/3.0.0:
     dependencies:
       find-up: 2.1.0

@@ -1,22 +1,28 @@
-import * as BabelTypes from "@babel/types";
+import { Visitor } from "@babel/traverse";
+
+export const PURPOSES = ["rethink", "question", "addition", "todo"];
+
+export type Purpose = typeof PURPOSES[number];
 
 export type Marking = {
   location: {
     filename: string;
     line: number;
   };
-  purpose: "rethink" | "question" | "addition" | "todo";
+  purpose: Purpose;
   details: string;
   heading: string;
 };
 
 export type Source = {
   type: "babel";
-  extract: (file: BabelTypes.File) => Marking[];
+  visitor: Visitor<{
+    addMarking: (marking: Marking) => void;
+  }>;
 };
 
 export type Output = {
-  getFile: (markings: Marking[]) => string;
+  getFile: (markings: Marking[]) => Promise<string> | string;
 };
 
 export type Config = {

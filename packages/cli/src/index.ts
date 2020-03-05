@@ -4,8 +4,26 @@ import fs from "fs-extra";
 import path from "path";
 import { ExitError } from "./errors";
 import pLimit from "p-limit";
-import { Config } from "@markings/types";
+import { Config, Marking, Source, Output } from "@markings/types";
 import mod from "module";
+import globby from "globby";
+import { parse, ParserPlugin } from "@babel/parser";
+import traverse from "@babel/traverse";
+
+let parserPlugins: ParserPlugin[] = [
+  "asyncGenerators",
+  "bigInt",
+  "classPrivateMethods",
+  "classProperties",
+  "doExpressions",
+  "dynamicImport",
+  "importMeta",
+  "jsx",
+  "topLevelAwait",
+  "throwExpressions",
+  "nullishCoalescingOperator",
+  "optionalChaining"
+];
 
 (async (cwd = process.cwd()) => {
   let args = process.argv.slice(2);
@@ -28,8 +46,41 @@ import mod from "module";
     ? mod.createRequire(cwd)
     : mod.createRequireFromPath(cwd);
 
-  config.sources.forEach(() => {});
+  let markings: Marking[] = [];
+
+  // TODO: use workers for all the things
+  await Promise.all(
+    config.sources.map(async sourceConfig => {
+      let result = await globby(sourceConfig.include, { cwd, absolute: true });
+      let plugin: Source = req(sourceConfig.source);
+      // TODO: limit the things
+      await Promise.all(
+        result.map(async filename => {
+          let ast = parse(await fs.readFile(filename, "utf8"), {
+            sourceFilename: filename,
+            plugins: parserPlugins.concat(
+              /\.tsx?$/.test(filename) ? "typescript" : "flow"
+            ),
+            sourceType: "unambiguous"
+          });
+          traverse(ast, plugin.visitor, undefined, {
+            addMarking: marking => {
+              markings.push(marking);
+            }
+          });
+        })
+      );
+    })
+  );
+  await Promise.all(
+    config.outputs.map(async outputConfig => {
+      let plugin: Output = req(outputConfig.output).output;
+      let output = await plugin.getFile(markings);
+      await fs.writeFile(outputConfig.filename, output);
+    })
+  );
 })().catch(err => {
+  console.log("yes");
   if (err instanceof ExitError) {
     process.exit(err.code);
   } else {

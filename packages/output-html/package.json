@@ -5,5 +5,8 @@
   "main": "dist/output-html.cjs.js",
   "module": "dist/output-html.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-html"
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-html",
+  "dependencies": {
+    "@markings/types": "^0.0.0"
+  }
 }

@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "@markings/react-note",
+  "version": "0.0.0",
+  "main": "dist/react-note.cjs.js",
+  "module": "dist/react-note.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/react-note",
+  "peerDependencies": {
+    "react": "^16.13.0"
+  }
+}
