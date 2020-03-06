@@ -7,6 +7,11 @@
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/react-note",
   "peerDependencies": {
-    "react": "^16.13.0"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@popperjs/core": "^2.0.6"
   }
 }

@@ -6,6 +6,4 @@ type Props = {
   heading?: string;
 };
 
-export const Note = (props: Props) => {
-  return null;
-};
+export { NoteProvider, Note } from "./note/Note";
