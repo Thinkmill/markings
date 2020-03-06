@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import {
+  AllHTMLAttributes,
   Fragment,
   HTMLAttributes,
   forwardRef,
@@ -16,7 +17,7 @@ import { color, elevation, radii, spacing } from "../tokens";
 import { AddIcon, CrossIcon, PinIcon } from "../icons";
 import { usePopover } from "../popover";
 
-import { NoteType, useNoteRegistry } from "./NoteContext";
+import { NoteProps, NoteType, useNoteRegistry } from "./NoteContext";
 
 /**
  * Renders all of the UI to do with viewing the list of notes.
@@ -24,10 +25,6 @@ import { NoteType, useNoteRegistry } from "./NoteContext";
 export const NotePanel = () => {
   const blanketElement = useRef<HTMLElement>(null);
   const [activeNote, setActiveNote] = useState<string | null>(null);
-  const [notesAreVisible, setNotesVisible] = useLocalStorage(
-    "notesAreVisible",
-    false
-  );
   const { notes, config } = useNoteRegistry();
   const {
     isOpen,
@@ -56,19 +53,6 @@ export const NotePanel = () => {
     setActiveNote(null);
     blanketElement.current = null;
   };
-
-  // sync visible checkbox with triggers
-  useEffect(() => {
-    let els = document.querySelectorAll(`[data-react-note-trigger]`);
-
-    if (els) {
-      let style = notesAreVisible ? "visible" : "hidden";
-
-      els.forEach(e => {
-        e.style.visibility = style;
-      });
-    }
-  }, [notesAreVisible]);
 
   if (typeof document === "undefined") {
     return null;
@@ -115,7 +99,6 @@ export const NotePanel = () => {
 
                     return (
                       <Item
-                        isActive={activeNote === item.id}
                         key={item.id}
                         onMouseEnter={itemMouseEnter(item.id)}
                         onMouseLeave={itemMouseLeve}
@@ -365,7 +348,7 @@ const Item = (props: HTMLAttributes<HTMLLIElement>) => (
     {...props}
   />
 );
-const ItemAnchor = (props: HTMLAttributes<HTMLAnchorElement>) => (
+const ItemAnchor = (props: AllHTMLAttributes<HTMLAnchorElement>) => (
   <a
     css={{
       alignItems: "flex-start",
@@ -382,7 +365,7 @@ const ItemAnchor = (props: HTMLAttributes<HTMLAnchorElement>) => (
     {...props}
   />
 );
-const ItemBody = (props: HTMLAttributes<HTMLDivElement>) => (
+const ItemBody = (props: SCProps) => (
   <div
     css={{
       flex: 1,
@@ -396,7 +379,7 @@ const ItemBody = (props: HTMLAttributes<HTMLDivElement>) => (
     {...props}
   />
 );
-const ItemSymbol = (props: HTMLAttributes<HTMLDivElement>) => (
+const ItemSymbol = (props: SCProps) => (
   <div
     css={{
       alignItems: "center",
@@ -434,7 +417,8 @@ const ItemMeta = ({ meta }) => {
     </div>
   );
 };
-const ItemLabel = ({ bg, ...props }) => {
+type ItemLabelProps = { bg: string } & SCProps;
+const ItemLabel = ({ bg, ...props }: ItemLabelProps) => {
   const fg = useMemo(() => foreground(bg), [bg]);
   return (
     <div
@@ -458,7 +442,10 @@ const ItemLabel = ({ bg, ...props }) => {
 };
 
 // assignee
-const ItemAssignee = ({ assignee }) => {
+type ItemAssigneeProps = {
+  assignee: { avatar_url: string; login: string };
+} & SCProps;
+const ItemAssignee = ({ assignee }: ItemAssigneeProps) => {
   if (!assignee) {
     return null;
   }
@@ -529,10 +516,10 @@ const Blanket = ({ element }: BlanketProps) => {
 // ------------------------------
 
 type TItems = {
-  [id: string]: NoteType;
+  [id: string]: NoteProps;
 };
 type TGroupedItems = {
-  [purpose: string]: NoteType[];
+  [purpose: string]: NoteProps[];
 };
 
 function groupItems(obj: TItems): TGroupedItems {
@@ -551,31 +538,6 @@ function groupItems(obj: TItems): TGroupedItems {
 
     return acc;
   }, {});
-}
-
-/** Takes a key to store against and an initial value, returns the `useState` signature. */
-function useLocalStorage<Value = any>(key: string, initialValue: Value) {
-  const [storedValue, setStoredValue] = useState<Value>(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error(error);
-      return initialValue;
-    }
-  });
-
-  // Wrap useState, persist the value to localStorage
-  const setValue = (value: Value) => {
-    try {
-      setStoredValue(value);
-      window.localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return [storedValue, setValue];
 }
 
 function plural(n: number, s: string, p: string) {

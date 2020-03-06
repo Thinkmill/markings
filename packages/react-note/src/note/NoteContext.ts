@@ -1,13 +1,17 @@
-import { createContext, useContext } from "react";
+import { ReactNode, createContext, useContext } from "react";
 
 import { PurposeType } from "./types";
+
+type IssueId = number | string;
 
 export type NoteType = {
   description: string;
   id: string;
-  issue?: number | string;
+  issue?: IssueId;
   purpose: PurposeType;
 };
+export type NoteProps = { children: ReactNode } & Omit<NoteType, "id">;
+
 export type ConfigType = {
   resolveIssueCreatePath: ({
     description,
@@ -16,13 +20,13 @@ export type ConfigType = {
     description: string;
     purpose: PurposeType;
   }) => string;
-  resolveIssuePath: (id: string) => string;
-  resolvePrPath: (id: string) => string;
+  resolveIssuePath: (id: IssueId) => string;
+  resolvePrPath: (id: IssueId) => string;
 };
 export type ContextType = {
   notes: { [id: string]: NoteType };
   config: ConfigType;
-  register: (props: NoteType) => string;
+  register: (props: NoteType) => string | undefined;
   unregister: (id: string) => void;
 };
 

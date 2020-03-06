@@ -6,6 +6,7 @@ import { jsx } from "@emotion/core";
 
 import {
   NoteContext,
+  NoteProps,
   NoteType,
   ConfigType,
   useNoteRegistry
@@ -26,7 +27,7 @@ type ProviderProps = {
 export const NoteProvider = ({ children, config }: ProviderProps) => {
   const [notes, setNotes] = useState<TNotes>({});
 
-  const register = useCallback((props: {}) => {
+  const register = useCallback((props: NoteType) => {
     const id = generateUID(props);
 
     if (id in notes) {
@@ -44,11 +45,11 @@ export const NoteProvider = ({ children, config }: ProviderProps) => {
 
     const note = { ...props, meta };
 
-    setNotes(past => ({ ...past, [id]: note }));
+    setNotes(currentNotes => ({ ...currentNotes, [id]: note }));
     return id;
   }, []);
   const unregister = useCallback((id: string) => {
-    setNotes(({ [id]: value, ...past }) => past);
+    setNotes(({ [id]: unusedValue, ...restNotes }) => restNotes);
   }, []);
 
   const ctx = { config, notes, register, unregister };
@@ -64,7 +65,6 @@ export const NoteProvider = ({ children, config }: ProviderProps) => {
 /**
  * Registers notes and wraps a unique attribute around the Note component
  */
-type NoteProps = { children: ReactNode } & Omit<NoteType, "id">;
 export const Note = ({ children, ...props }: NoteProps) => {
   const { register, unregister } = useNoteRegistry();
   const noteId = useRef<string>();
