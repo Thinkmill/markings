@@ -3,8 +3,7 @@ import * as t from "@babel/types";
 import { NodePath } from "@babel/traverse";
 
 let getValueFromJSXAttribute = (
-  attribute: NodePath<t.JSXAttribute>,
-  code: string
+  attribute: NodePath<t.JSXAttribute>
 ): string => {
   let value = attribute.get("value");
   if (value.isStringLiteral()) {
@@ -24,7 +23,7 @@ let getValueFromJSXAttribute = (
 export const source: Source = {
   type: "babel",
   visitor: {
-    JSXOpeningElement(path, { addMarking, filename, code }) {
+    JSXOpeningElement(path, { addMarking }) {
       if (t.isJSXIdentifier(path.node.name) && path.node.name.name === "Note") {
         let details: string | undefined;
         let heading: string | undefined;
@@ -33,13 +32,13 @@ export const source: Source = {
         for (let attribute of path.get("attributes")) {
           if (attribute.isJSXAttribute()) {
             if (attribute.node.name.name === "details") {
-              details = getValueFromJSXAttribute(attribute, code);
+              details = getValueFromJSXAttribute(attribute);
             }
             if (attribute.node.name.name === "heading") {
-              heading = getValueFromJSXAttribute(attribute, code);
+              heading = getValueFromJSXAttribute(attribute);
             }
             if (attribute.node.name.name === "purpose") {
-              purpose = getValueFromJSXAttribute(attribute, code);
+              purpose = getValueFromJSXAttribute(attribute);
               if (!PURPOSES.includes(purpose)) {
                 throw attribute.buildCodeFrameError(
                   `Purpose must be one of ${PURPOSES.join(", ")}`
@@ -67,12 +66,10 @@ export const source: Source = {
           heading: heading || purpose,
           purpose,
           location: {
-            filename,
             line: path.node.loc!.start.line
           }
         });
       }
     }
   }
-  // TODO: implement source
 };

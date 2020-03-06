@@ -8,6 +8,7 @@
     "@markings/output-csv": "^0.0.1",
     "@markings/output-json": "^0.0.2",
     "@markings/react-note": "^0.0.0",
+    "@markings/source-comments": "^0.0.2",
     "@markings/source-react-note": "^0.0.3",
     "@preconstruct/next": "^1.0.1",
     "@types/node": "^13.7.7",
@@ -25,6 +26,12 @@
     "sources": [
       {
         "source": "@markings/source-react-note",
+        "include": [
+          "test-file.tsx"
+        ]
+      },
+      {
+        "source": "@markings/source-comments",
         "include": [
           "test-file.tsx"
         ]

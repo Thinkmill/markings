@@ -3,13 +3,19 @@ import * as logger from "./logger";
 import fs from "fs-extra";
 import nodePath from "path";
 import { ExitError } from "./errors";
-import { Config, Marking, Source, Output } from "@markings/types";
+import {
+  Config,
+  Marking,
+  Source,
+  Output,
+  PartialMarking
+} from "@markings/types";
 import mod from "module";
 import globby from "globby";
 import { ParserPlugin } from "@babel/parser";
 import { transform, PluginObj } from "@babel/core";
 // @ts-ignore
-import { visitors as visitorsUtils } from "@babel/traverse";
+import { visitors as visitorsUtils, Visitor } from "@babel/traverse";
 
 let parserPlugins: ParserPlugin[] = [
   "asyncGenerators",
@@ -51,13 +57,13 @@ let parserPlugins: ParserPlugin[] = [
 
   let markings: Marking[] = [];
 
-  let visitorsByFilename = new Map<string, Set<Source["visitor"]>>();
+  let sourcesByFilename = new Map<string, Set<Source>>();
 
-  let addVisitorToFile = (filename: string, visitor: Source["visitor"]) => {
-    if (!visitorsByFilename.has(filename)) {
-      visitorsByFilename.set(filename, new Set());
+  let addBabelSourceToFile = (filename: string, visitor: Source) => {
+    if (!sourcesByFilename.has(filename)) {
+      sourcesByFilename.set(filename, new Set());
     }
-    let visitors = visitorsByFilename.get(filename)!;
+    let visitors = sourcesByFilename.get(filename)!;
     visitors.add(visitor);
   };
 
@@ -72,15 +78,35 @@ let parserPlugins: ParserPlugin[] = [
 
       for (let filename of result) {
         if (/\.[jt]sx?$/.test(filename) && !/\.d\.ts$/.test(filename)) {
-          addVisitorToFile(filename, plugin.visitor);
+          addBabelSourceToFile(filename, plugin);
         }
       }
     })
   );
   // TODO: do extraction work in worker threads
   await Promise.all(
-    [...visitorsByFilename.entries()].map(async ([filename, visitors]) => {
-      let visitor: Source["visitor"] = visitorsUtils.merge([...visitors], []);
+    [...sourcesByFilename.entries()].map(async ([filename, sources]) => {
+      let visitorsArray = [...sources].map(x => x.visitor);
+      // TODO: use something other than
+      let package = findPkgUp(filename);
+      let visitor: Visitor = visitorsUtils.merge(
+        visitorsArray,
+        visitorsArray.map(() => ({
+          addMarking: (marking: PartialMarking) => {
+            markings.push({
+              location: {
+                line: marking.location.line,
+                filename
+              },
+              details: marking.details,
+              source: "",
+              package: "",
+              heading: marking.heading,
+              purpose: marking.purpose
+            });
+          }
+        }))
+      );
       let contents = await fs.readFile(filename, "utf8");
       transform(contents, {
         code: false,
@@ -97,17 +123,7 @@ let parserPlugins: ParserPlugin[] = [
         plugins: [
           (): PluginObj => {
             return {
-              visitor: {
-                Program(path) {
-                  path.traverse(visitor, {
-                    addMarking: marking => {
-                      markings.push(marking);
-                    },
-                    filename: nodePath.relative(cwd, filename),
-                    code: contents
-                  });
-                }
-              }
+              visitor
             };
           }
         ]

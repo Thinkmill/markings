@@ -66,9 +66,11 @@ importers:
       strip-ansi: ^6.0.0
   packages/output-csv:
     dependencies:
+      '@babel/runtime': 7.8.7
       '@markings/types': 'link:../types'
       csv-stringify: 5.3.6
     specifiers:
+      '@babel/runtime': ^7.5.5
       '@markings/types': ^0.0.2
       csv-stringify: ^5.3.6
   packages/output-html:
@@ -85,8 +87,10 @@ importers:
     specifiers: {}
   packages/source-comments:
     dependencies:
+      '@babel/types': 7.8.7
       '@markings/types': 'link:../types'
     specifiers:
+      '@babel/types': ^7.8.7
       '@markings/types': ^0.0.2
   packages/source-react-note:
     dependencies:
@@ -116,6 +120,7 @@ importers:
       '@markings/output-csv': 'link:../packages/output-csv'
       '@markings/output-json': 'link:../packages/output-json'
       '@markings/react-note': 'link:../packages/react-note'
+      '@markings/source-comments': 'link:../packages/source-comments'
       '@markings/source-react-note': 'link:../packages/source-react-note'
       '@preconstruct/next': 1.0.1
       '@types/node': 13.7.7
@@ -125,9 +130,10 @@ importers:
       react-dom: 16.13.0_react@16.13.0
     specifiers:
       '@markings/cli': ^0.0.5
-      '@markings/output-csv': ^0.0.0
+      '@markings/output-csv': ^0.0.1
       '@markings/output-json': ^0.0.2
       '@markings/react-note': ^0.0.0
+      '@markings/source-comments': ^0.0.2
       '@markings/source-react-note': ^0.0.3
       '@preconstruct/next': ^1.0.1
       '@types/node': ^13.7.7

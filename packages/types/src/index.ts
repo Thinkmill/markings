@@ -4,9 +4,8 @@ export const PURPOSES = ["rethink", "question", "addition", "todo"];
 
 export type Purpose = typeof PURPOSES[number];
 
-export type Marking = {
+export type PartialMarking = {
   location: {
-    filename: string;
     line: number;
   };
   purpose: Purpose;
@@ -14,12 +13,22 @@ export type Marking = {
   heading: string;
 };
 
+export type Marking = {
+  location: {
+    line: number;
+    filename: string;
+  };
+  purpose: Purpose;
+  details: string;
+  heading: string;
+  source: string;
+  package: string;
+};
+
 export type Source = {
   type: "babel";
   visitor: Visitor<{
-    addMarking: (marking: Marking) => void;
-    filename: string;
-    code: string;
+    addMarking: (marking: PartialMarking) => void;
   }>;
 };
 
