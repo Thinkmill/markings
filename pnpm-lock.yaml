@@ -36,6 +36,7 @@ importers:
       '@babel/parser': 7.8.6
       '@babel/runtime': 7.8.4
       '@babel/traverse': 7.8.6
+      '@manypkg/get-packages': 1.0.0
       '@markings/types': 'link:../types'
       '@types/babel__core': 7.1.6
       '@types/babel__traverse': 7.0.9
@@ -53,6 +54,7 @@ importers:
       '@babel/parser': ^7.8.6
       '@babel/runtime': ^7.5.5
       '@babel/traverse': ^7.8.6
+      '@manypkg/get-packages': ^1.0.0
       '@markings/types': ^0.0.2
       '@types/babel__core': ^7.1.6
       '@types/babel__traverse': ^7.0.9
@@ -2337,6 +2339,25 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-JIw6i9MZTObX7L9lQsSF5ohL2T0jJuT4wU/NX/s1YwKd38A3XUORirsK6a3y2eIEfkIt0DB3AnaZYS+Vnn4QSA==
+  /@manypkg/find-root/1.0.0:
+    dependencies:
+      '@babel/runtime': 7.8.7
+      '@types/node': 12.12.29
+      find-up: 4.1.0
+      fs-extra: 8.1.0
+    dev: false
+    resolution:
+      integrity: sha512-c2J5B6MgkCqPVN49/FggigF2a5WThPnjd2RxknDPZjQM/QfSTHpU1r3NOXjQOzKSNRTnFFMHuOYJAVZ66LZNCQ==
+  /@manypkg/get-packages/1.0.0:
+    dependencies:
+      '@babel/runtime': 7.8.7
+      '@manypkg/find-root': 1.0.0
+      fs-extra: 8.1.0
+      globby: 11.0.0
+      read-yaml-file: 1.1.0
+    dev: false
+    resolution:
+      integrity: sha512-aY9Xp6YXpO1bShEhm0GFd8y8BRWNSbJSUf4p1nTb0t280ONrarwMFEzkF4oqb62KzkR70FMymPKEXXnfTE9egA==
   /@mrmlnc/readdir-enhanced/2.2.1:
     dependencies:
       call-me-maybe: 1.0.1

@@ -9,8 +9,7 @@ export type PartialMarking = {
     line: number;
   };
   purpose: Purpose;
-  details: string;
-  heading: string;
+  description: string;
 };
 
 export type Marking = {
@@ -19,13 +18,13 @@ export type Marking = {
     filename: string;
   };
   purpose: Purpose;
-  details: string;
-  heading: string;
+  description: string;
   source: string;
   package: string;
 };
 
 export type Source = {
+  name: string;
   type: "babel";
   visitor: Visitor<{
     addMarking: (marking: PartialMarking) => void;

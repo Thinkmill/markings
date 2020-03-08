@@ -3,4 +3,4 @@ import { Note } from "@markings/react-note";
 
 // TODO: figure out x
 
-let x = <Note purpose="todo" details="some content" />;
+let x = <Note purpose="todo" description="some content" />;

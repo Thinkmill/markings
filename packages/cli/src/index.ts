@@ -14,6 +14,7 @@ import mod from "module";
 import globby from "globby";
 import { ParserPlugin } from "@babel/parser";
 import { transform, PluginObj } from "@babel/core";
+import { getPackages, Package } from "@manypkg/get-packages";
 // @ts-ignore
 import { visitors as visitorsUtils, Visitor } from "@babel/traverse";
 
@@ -32,8 +33,25 @@ let parserPlugins: ParserPlugin[] = [
   "optionalChaining"
 ];
 
+function getPackageFromFilename(
+  repoRoot: string,
+  filename: string,
+  packagesByDirectory: Map<string, Package>
+) {
+  let currentDir = nodePath.dirname(filename);
+  while (currentDir !== repoRoot) {
+    let maybeCurrentPackage = packagesByDirectory.get(currentDir);
+    if (maybeCurrentPackage !== undefined) {
+      return maybeCurrentPackage;
+    }
+    currentDir = nodePath.dirname(currentDir);
+  }
+  throw new Error(`could not find package from ${JSON.stringify(filename)}`);
+}
+
 (async (cwd = process.cwd()) => {
   let args = process.argv.slice(2);
+  let packagesPromise = getPackages(cwd);
   let packageJsonContent = await fs.readJson(
     nodePath.join(cwd, "package.json")
   );
@@ -83,25 +101,29 @@ let parserPlugins: ParserPlugin[] = [
       }
     })
   );
+  let pkgs = await packagesPromise;
+  let packagesByDirectory = new Map(pkgs.packages.map(x => [x.dir, x]));
   // TODO: do extraction work in worker threads
   await Promise.all(
     [...sourcesByFilename.entries()].map(async ([filename, sources]) => {
       let visitorsArray = [...sources].map(x => x.visitor);
-      // TODO: use something other than
-      let package = findPkgUp(filename);
+
       let visitor: Visitor = visitorsUtils.merge(
         visitorsArray,
-        visitorsArray.map(() => ({
+        [...sources].map(source => ({
           addMarking: (marking: PartialMarking) => {
             markings.push({
               location: {
                 line: marking.location.line,
                 filename
               },
-              details: marking.details,
-              source: "",
-              package: "",
-              heading: marking.heading,
+              description: marking.description,
+              source: source.name,
+              package: getPackageFromFilename(
+                pkgs.root.dir,
+                filename,
+                packagesByDirectory
+              ).packageJson.name,
               purpose: marking.purpose
             });
           }

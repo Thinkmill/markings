@@ -4,6 +4,7 @@ import * as BabelTypes from "@babel/types";
 let commentTypes = ["TODO", "FIXME", "QUESTION"];
 
 export const source: Source = {
+  name: "@markings/source-comments",
   type: "babel",
   visitor: {
     Program(path, { addMarking }) {
@@ -15,13 +16,8 @@ export const source: Source = {
           let match = value.match(/([^:]+)(.+)/);
           if (match !== null && commentTypes.includes(match[1])) {
             addMarking({
-              details: match[2],
+              description: match[2],
               purpose: match[1] === "QUESTION" ? "question" : "todo",
-              heading: ({
-                TODO: "Todo",
-                FIXME: "Fixme",
-                QUESTION: "Question"
-              } as any)[match[1]] as string,
               location: {
                 line: comment.loc.start.line
               }
