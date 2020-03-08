@@ -21,7 +21,6 @@ let getValueFromJSXAttribute = (
 };
 
 export const source: Source = {
-  name: "@markings/source-react-note",
   type: "babel",
   visitor: {
     JSXOpeningElement(path, { addMarking }) {

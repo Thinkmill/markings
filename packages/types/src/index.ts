@@ -24,7 +24,6 @@ export type Marking = {
 };
 
 export type Source = {
-  name: string;
   type: "babel";
   visitor: Visitor<{
     addMarking: (marking: PartialMarking) => void;

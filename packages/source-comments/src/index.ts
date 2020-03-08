@@ -4,7 +4,6 @@ import * as BabelTypes from "@babel/types";
 let commentTypes = ["TODO", "FIXME", "QUESTION"];
 
 export const source: Source = {
-  name: "@markings/source-comments",
   type: "babel",
   visitor: {
     Program(path, { addMarking }) {

@@ -75,14 +75,14 @@ function getPackageFromFilename(
 
   let markings: Marking[] = [];
 
-  let sourcesByFilename = new Map<string, Set<Source>>();
+  let sourcesByFilename = new Map<string, Set<string>>();
 
-  let addBabelSourceToFile = (filename: string, visitor: Source) => {
+  let addBabelSourceToFile = (filename: string, source: string) => {
     if (!sourcesByFilename.has(filename)) {
       sourcesByFilename.set(filename, new Set());
     }
-    let visitors = sourcesByFilename.get(filename)!;
-    visitors.add(visitor);
+    let sources = sourcesByFilename.get(filename)!;
+    sources.add(source);
   };
 
   await Promise.all(
@@ -92,11 +92,10 @@ function getPackageFromFilename(
         absolute: true,
         ignore: ["**/node_modules/**/*"]
       });
-      let plugin: Source = req(sourceConfig.source).source;
 
       for (let filename of result) {
         if (/\.[jt]sx?$/.test(filename) && !/\.d\.ts$/.test(filename)) {
-          addBabelSourceToFile(filename, plugin);
+          addBabelSourceToFile(filename, sourceConfig.source);
         }
       }
     })
@@ -106,7 +105,7 @@ function getPackageFromFilename(
   // TODO: do extraction work in worker threads
   await Promise.all(
     [...sourcesByFilename.entries()].map(async ([filename, sources]) => {
-      let visitorsArray = [...sources].map(x => x.visitor);
+      let visitorsArray = [...sources].map(x => req(x).source.visitor);
 
       let visitor: Visitor = visitorsUtils.merge(
         visitorsArray,
@@ -118,7 +117,7 @@ function getPackageFromFilename(
                 filename
               },
               description: marking.description,
-              source: source.name,
+              source: source,
               package: getPackageFromFilename(
                 pkgs.root.dir,
                 filename,
