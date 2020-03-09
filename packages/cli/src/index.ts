@@ -30,7 +30,8 @@ let parserPlugins: ParserPlugin[] = [
   "topLevelAwait",
   "throwExpressions",
   "nullishCoalescingOperator",
-  "optionalChaining"
+  "optionalChaining",
+  "decorators-legacy"
 ];
 
 function getPackageFromFilename(

@@ -22,39 +22,43 @@ export const NotePanel = ({ markings }: { markings: Marking[] }) => {
 
   return (
     <div css={{ display: "flex", padding: 8, justifyContent: "center" }}>
-      <Dialog>
-        <DialogHeader>
-          <span css={{ fontWeight: "bold" }}>
-            {plural(noteCount, "Note", "Notes")}
-          </span>
-          <p>
-            <a
-              href="https://github.com/Thinkmill/markings"
-              title="Learn about Markings"
-            >
-              What is this?
-            </a>
-          </p>
-        </DialogHeader>
-        {Object.entries(groupedItems).map(([purpose, items]) => (
-          <Group key={purpose}>
-            <GroupTitle>{purpose}</GroupTitle>
-            <ul css={{ listStyle: "none", margin: 0, padding: 0 }}>
-              {items.map((item, index) => {
-                return (
-                  <Item key={index}>
-                    <ItemAnchor>
-                      <ItemBody>
-                        <p>{item.description}</p>
-                      </ItemBody>
-                    </ItemAnchor>
-                  </Item>
-                );
-              })}
-            </ul>
-          </Group>
-        ))}
-      </Dialog>
+      {Object.entries(groupedItems).map(([pkgName, group]) => {
+        return (
+          <Dialog>
+            <DialogHeader>
+              <span css={{ fontWeight: "bold" }}>
+                {plural(noteCount, "Note", "Notes")} in {pkgName}
+              </span>
+              <p>
+                <a
+                  href="https://github.com/Thinkmill/markings"
+                  title="Learn about Markings"
+                >
+                  What is this?
+                </a>
+              </p>
+            </DialogHeader>
+            {Object.entries(group).map(([purpose, items]) => (
+              <Group key={purpose}>
+                <GroupTitle>{purpose}</GroupTitle>
+                <ul css={{ listStyle: "none", margin: 0, padding: 0 }}>
+                  {items.map((item, index) => {
+                    return (
+                      <Item key={index}>
+                        <ItemAnchor>
+                          <ItemBody>
+                            <p>{item.description}</p>
+                          </ItemBody>
+                        </ItemAnchor>
+                      </Item>
+                    );
+                  })}
+                </ul>
+              </Group>
+            ))}
+          </Dialog>
+        );
+      })}
     </div>
   );
 };
@@ -189,17 +193,40 @@ const ItemBody = (props: SCProps) => (
 // ------------------------------
 
 type TGroupedItems = {
-  [Key in Purpose]: Marking[];
+  [pkgName: string]: {
+    [Key in Purpose]: Marking[];
+  };
 };
 
-function groupItems(items: Marking[]): TGroupedItems {
+function groupItemsByPurpose(items: Marking[]) {
   // create an object grouped by the purpose property
   return items.reduce((acc, note) => {
     acc[note.purpose] = acc[note.purpose] || [];
     acc[note.purpose].push(note);
 
     return acc;
-  }, {} as TGroupedItems);
+  }, {} as { [Key in Purpose]: Marking[] });
+}
+
+function groupItems(items: Marking[]): TGroupedItems {
+  // create an object grouped by the purpose property
+  let itemsByPackage = items.reduce(
+    (acc, note) => {
+      acc[note.package] = acc[note.package] || [];
+      acc[note.package].push(note);
+
+      return acc;
+    },
+    {} as {
+      [pkgName: string]: Marking[];
+    }
+  );
+  for (let pkgName in itemsByPackage) {
+    (itemsByPackage as any)[pkgName] = groupItemsByPurpose(
+      itemsByPackage[pkgName]
+    );
+  }
+  return (itemsByPackage as any) as TGroupedItems;
 }
 
 function plural(n: number, s: string, p: string) {
