@@ -1,5 +1,17 @@
 # @markings/test-project
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`3985c38`](https://github.com/Thinkmill/markings/commit/3985c38bbfead32d7aa6559ca07205621ba3ec2f)]:
+  - @markings/cli@0.0.6
+  - @markings/source-comments@0.0.3
+  - @markings/source-react-note@0.0.4
+  - @markings/output-csv@0.0.2
+  - @markings/output-json@0.0.3
+  - @markings/react-note@0.0.1
+
 ## 1.0.6
 
 ### Patch Changes
