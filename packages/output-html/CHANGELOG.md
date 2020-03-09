@@ -1,5 +1,11 @@
 # @markings/output-html
 
+## 0.0.6
+
+### Patch Changes
+
+- [`b80c6b4`](https://github.com/Thinkmill/markings/commit/b80c6b401ac828ae805b9102aa1a6b12680a0e4c) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Improve UI
+
 ## 0.0.5
 
 ### Patch Changes
