@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@markings/source-comments",
   "version": "0.0.4",
   "main": "dist/source-comments.cjs.js",
