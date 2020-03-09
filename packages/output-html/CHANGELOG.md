@@ -1,5 +1,11 @@
 # @markings/output-html
 
+## 0.0.5
+
+### Patch Changes
+
+- [`9a73657`](https://github.com/Thinkmill/markings/commit/9a736573326003a12c09dd38dd76859c78113eb7) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Have one dialog per package
+
 ## 0.0.4
 
 ### Patch Changes

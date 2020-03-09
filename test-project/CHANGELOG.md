@@ -1,5 +1,13 @@
 # @markings/test-project
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`9a73657`](https://github.com/Thinkmill/markings/commit/9a736573326003a12c09dd38dd76859c78113eb7), [`9a73657`](https://github.com/Thinkmill/markings/commit/9a736573326003a12c09dd38dd76859c78113eb7)]:
+  - @markings/output-html@0.0.5
+  - @markings/cli@0.0.8
+
 ## 1.0.8
 
 ### Patch Changes

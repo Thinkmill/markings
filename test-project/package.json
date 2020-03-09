@@ -1,12 +1,12 @@
 {
   "name": "@markings/test-project",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "@markings/cli": "^0.0.7",
+    "@markings/cli": "^0.0.8",
     "@markings/output-csv": "^0.0.3",
-    "@markings/output-html": "^0.0.4",
+    "@markings/output-html": "^0.0.5",
     "@markings/output-json": "^0.0.4",
     "@markings/react-note": "^0.0.2",
     "@markings/source-comments": "^0.0.4",
