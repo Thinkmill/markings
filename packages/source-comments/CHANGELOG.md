@@ -1,5 +1,14 @@
 # @markings/source-comments
 
+## 0.0.3
+
+### Patch Changes
+
+- [`3985c38`](https://github.com/Thinkmill/markings/commit/3985c38bbfead32d7aa6559ca07205621ba3ec2f) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Add package to markings and rename details to description
+
+- Updated dependencies [[`3985c38`](https://github.com/Thinkmill/markings/commit/3985c38bbfead32d7aa6559ca07205621ba3ec2f)]:
+  - @markings/types@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
