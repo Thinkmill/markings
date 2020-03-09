@@ -65,16 +65,22 @@ export const NoteProvider = ({ children, config }: ProviderProps) => {
 /**
  * Registers notes and wraps a unique attribute around the Note component
  */
-export const Note = ({ children, ...props }: NoteProps) => {
+export const Note = ({
+  children,
+  ...props
+}: NoteProps & { children: ReactNode }) => {
   const { register, unregister } = useNoteRegistry();
   const noteId = useRef<string>();
 
   useEffect(() => {
-    noteId.current = register(props);
-    return () => {
-      unregister(noteId.current);
-      noteId.current = undefined;
-    };
+    const id = register(props);
+    if (id) {
+      noteId.current = id;
+      return () => {
+        unregister(id);
+        noteId.current = undefined;
+      };
+    }
   }, []);
 
   return (

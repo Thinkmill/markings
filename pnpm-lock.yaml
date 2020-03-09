@@ -88,13 +88,16 @@ importers:
   packages/react-note:
     dependencies:
       '@emotion/core': 10.0.28_react@16.13.0
+      '@markings/types': 'link:../types'
       '@popperjs/core': 2.0.6
       '@types/react': 16.9.23
       '@types/react-dom': 16.9.5
+    devDependencies:
       react: 16.13.0
       react-dom: 16.13.0_react@16.13.0
     specifiers:
       '@emotion/core': ^10.0.28
+      '@markings/types': ^0.0.2
       '@popperjs/core': ^2.0.6
       '@types/react': ^16.9.23
       '@types/react-dom': ^16.9.5
@@ -6751,7 +6754,6 @@ packages:
     resolution:
       integrity: sha1-mGbfOVECEw449/mWvOtlRDIJwls=
   /js-tokens/4.0.0:
-    dev: false
     resolution:
       integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
   /js-yaml/3.13.1:
@@ -7111,7 +7113,6 @@ packages:
   /loose-envify/1.4.0:
     dependencies:
       js-tokens: 4.0.0
-    dev: false
     hasBin: true
     resolution:
       integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -7749,7 +7750,6 @@ packages:
     resolution:
       integrity: sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
   /object-assign/4.1.1:
-    dev: false
     engines:
       node: '>=0.10.0'
     resolution:
@@ -8719,7 +8719,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.0
-    dev: false
     resolution:
       integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
   /prr/1.0.1:
@@ -8857,7 +8856,6 @@ packages:
       prop-types: 15.7.2
       react: 16.13.0
       scheduler: 0.19.0
-    dev: false
     peerDependencies:
       react: ^16.0.0
     resolution:
@@ -8867,7 +8865,6 @@ packages:
     resolution:
       integrity: sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
   /react-is/16.13.0:
-    dev: false
     resolution:
       integrity: sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
   /react-is/16.8.6:
@@ -8879,7 +8876,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.7.2
-    dev: false
     engines:
       node: '>=0.10.0'
     resolution:
@@ -9356,7 +9352,6 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-    dev: false
     resolution:
       integrity: sha512-xowbVaTPe9r7y7RUejcK73/j8tt2jfiyTednOvHbA8JoClvMYCp+r8QegLwK/n8zWQAtZb1fFnER4XLBZXrCxA==
   /schema-utils/1.0.0:

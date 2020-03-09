@@ -1,16 +1,15 @@
 import { ReactNode, createContext, useContext } from "react";
 
-import { PurposeType } from "./types";
+import { Purpose } from "@markings/types";
 
 type IssueId = number | string;
 
 export type NoteType = {
   description: string;
-  id: string;
   issue?: IssueId;
-  purpose: PurposeType;
+  purpose: Purpose;
 };
-export type NoteProps = { children: ReactNode } & Omit<NoteType, "id">;
+export type NoteProps = NoteType;
 
 export type ConfigType = {
   resolveIssueCreatePath: ({
@@ -18,7 +17,7 @@ export type ConfigType = {
     purpose
   }: {
     description: string;
-    purpose: PurposeType;
+    purpose: Purpose;
   }) => string;
   resolveIssuePath: (id: IssueId) => string;
   resolvePrPath: (id: IssueId) => string;

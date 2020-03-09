@@ -14,10 +14,11 @@ import { createPortal } from "react-dom";
 import { jsx } from "@emotion/core";
 
 import { color, elevation, radii, spacing } from "../tokens";
-import { AddIcon, CrossIcon, PinIcon } from "../icons";
+import { CrossIcon, PinIcon } from "../icons";
 import { usePopover } from "../popover";
 
-import { NoteProps, NoteType, useNoteRegistry } from "./NoteContext";
+import { NoteProps, useNoteRegistry } from "./NoteContext";
+import { Purpose } from "@markings/types";
 
 /**
  * Renders all of the UI to do with viewing the list of notes.
@@ -40,6 +41,7 @@ export const NotePanel = () => {
     const el = document.querySelector(`[data-react-note-id="${id}"]`);
 
     if (el) {
+      // @ts-ignore
       blanketElement.current = el;
 
       el.scrollIntoView({
@@ -51,6 +53,7 @@ export const NotePanel = () => {
   };
   const itemMouseLeve = () => {
     setActiveNote(null);
+    // @ts-ignore
     blanketElement.current = null;
   };
 
@@ -70,7 +73,10 @@ export const NotePanel = () => {
   return createPortal(
     <Fragment>
       {isOpen && (
-        <Dialog ref={dialogRef}>
+        <Dialog
+          // @ts-ignore
+          ref={dialogRef}
+        >
           <DialogHeader>
             <span css={{ fontWeight: "bold" }}>
               {plural(noteCount, "Note", "Notes")}
@@ -111,7 +117,10 @@ export const NotePanel = () => {
                         >
                           <ItemBody>
                             <p>{item.description}</p>
-                            <ItemMeta meta={item.meta} />
+                            <ItemMeta
+                              // @ts-ignore
+                              meta={item.meta}
+                            />
                           </ItemBody>
                           <ItemSymbol>
                             {item.issue && `#${item.issue}`}
@@ -132,7 +141,11 @@ export const NotePanel = () => {
           </DialogFooter> */}
         </Dialog>
       )}
-      <Fab onClick={isOpen ? closePopover : openPopover} ref={triggerRef}>
+      <Fab
+        onClick={isOpen ? closePopover : openPopover}
+        // @ts-ignore
+        ref={triggerRef}
+      >
         {isOpen ? <CrossIcon /> : <PinIcon size={24} />}
         {/* {noteCount} */}
       </Fab>
@@ -191,6 +204,7 @@ const Dialog = forwardRef<HTMLDivElement>((props, consumerRef) => {
   return (
     <div
       ref={consumerRef}
+      // @ts-ignore
       css={{
         background: DIALOG_BG,
         borderRadius: radii.medium,
@@ -397,7 +411,7 @@ const ItemSymbol = (props: SCProps) => (
 );
 
 // issue labels
-const ItemMeta = ({ meta }) => {
+const ItemMeta = ({ meta }: { meta: any }) => {
   if (!(meta.labels && meta.labels.length) || !meta.assignee) {
     return null;
   }
@@ -406,7 +420,7 @@ const ItemMeta = ({ meta }) => {
     <div css={{ display: "flex", flexWrap: "wrap" }}>
       <ItemAssignee assignee={meta.assignee} />
       {meta.labels && meta.labels.length ? (
-        meta.labels.map(l => (
+        meta.labels.map((l: any) => (
           <ItemLabel bg={l.color} key={l.name}>
             {l.name}
           </ItemLabel>
@@ -519,12 +533,12 @@ type TItems = {
   [id: string]: NoteProps;
 };
 type TGroupedItems = {
-  [purpose: string]: NoteProps[];
+  [Key in Purpose]: (NoteProps & { id: string })[];
 };
 
 function groupItems(obj: TItems): TGroupedItems {
   // strip children + ensure `purpose` property
-  let arr = Object.entries(obj).map(([id, { children, ...data }]) => {
+  let arr = Object.entries(obj).map(([id, data]) => {
     if (!data.purpose) {
       return { id, purpose: "todo", ...data };
     }
@@ -537,7 +551,7 @@ function groupItems(obj: TItems): TGroupedItems {
     acc[note.purpose].push(note);
 
     return acc;
-  }, {});
+  }, {} as TGroupedItems);
 }
 
 function plural(n: number, s: string, p: string) {
