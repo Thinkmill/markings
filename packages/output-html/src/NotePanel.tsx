@@ -11,34 +11,32 @@ import { Purpose, Marking } from "@markings/types";
  * Renders all of the UI to do with viewing the list of notes.
  */
 export const NotePanel = ({ markings }: { markings: Marking[] }) => {
-  const noteCount = markings.length;
-
   // bail if there are no registered notes
-  if (!noteCount) {
+  if (!markings.length) {
     return <span>No notes found</span>;
   }
 
   const groupedItems = groupItems(markings);
 
   return (
-    <div css={{ display: "flex", padding: 8, justifyContent: "center" }}>
+    <div
+      css={{
+        display: "flex",
+        padding: 8,
+        justifyContent: "center",
+        flexWrap: "wrap"
+      }}
+    >
       {Object.entries(groupedItems).map(([pkgName, group]) => {
+        let entries = Object.entries(group);
         return (
-          <Dialog>
+          <Dialog key={pkgName}>
             <DialogHeader>
               <span css={{ fontWeight: "bold" }}>
-                {plural(noteCount, "Note", "Notes")} in {pkgName}
+                {plural(entries.length, "Note", "Notes")} in {pkgName}
               </span>
-              <p>
-                <a
-                  href="https://github.com/Thinkmill/markings"
-                  title="Learn about Markings"
-                >
-                  What is this?
-                </a>
-              </p>
             </DialogHeader>
-            {Object.entries(group).map(([purpose, items]) => (
+            {entries.map(([purpose, items]) => (
               <Group key={purpose}>
                 <GroupTitle>{purpose}</GroupTitle>
                 <ul css={{ listStyle: "none", margin: 0, padding: 0 }}>
@@ -241,7 +239,6 @@ const Dialog = (props: HTMLAttributes<HTMLDivElement>) => (
       borderRadius: radii.medium,
       boxShadow: `rgba(101, 119, 134, 0.2) 0px 2px 15px, rgba(101, 119, 134, 0.12) 0px 1px 3px 1px`,
       boxSizing: "border-box",
-      maxHeight: "calc(100vh - 120px)",
       display: "flex",
       flexDirection: "column",
       fontSize: 14,
@@ -253,7 +250,7 @@ const Dialog = (props: HTMLAttributes<HTMLDivElement>) => (
       color: color.N600,
       fontFamily:
         '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-      margin: 0,
+      margin: 16,
       fontFeatureSettings: "liga",
       textRendering: "optimizelegibility",
       WebkitFontSmoothing: "antialiased",
