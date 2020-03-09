@@ -1,5 +1,11 @@
 # @markings/cli
 
+## 0.0.8
+
+### Patch Changes
+
+- [`9a73657`](https://github.com/Thinkmill/markings/commit/9a736573326003a12c09dd38dd76859c78113eb7) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update Babel parser plugins
+
 ## 0.0.7
 
 ### Patch Changes
