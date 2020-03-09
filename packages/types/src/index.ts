@@ -1,6 +1,6 @@
 import { Visitor } from "@babel/traverse";
 
-export const PURPOSES = ["rethink", "question", "addition", "todo"];
+export const PURPOSES = ["rethink", "question", "addition", "todo"] as const;
 
 export type Purpose = typeof PURPOSES[number];
 

@@ -34,7 +34,7 @@ export const source: Source = {
               description = getValueFromJSXAttribute(attribute);
             }
             if (attribute.node.name.name === "purpose") {
-              purpose = getValueFromJSXAttribute(attribute);
+              purpose = getValueFromJSXAttribute(attribute) as Purpose;
               if (!PURPOSES.includes(purpose)) {
                 throw attribute.buildCodeFrameError(
                   `Purpose must be one of ${PURPOSES.join(", ")}`
@@ -48,9 +48,7 @@ export const source: Source = {
           }
         }
         if (purpose === undefined) {
-          throw path.buildCodeFrameError(
-            "purpose must be passed to the Note component"
-          );
+          purpose = "todo";
         }
         if (description === undefined) {
           throw path.buildCodeFrameError(
