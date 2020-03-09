@@ -3,8 +3,7 @@ import * as t from "@babel/types";
 import { NodePath } from "@babel/traverse";
 
 let getValueFromJSXAttribute = (
-  attribute: NodePath<t.JSXAttribute>,
-  code: string
+  attribute: NodePath<t.JSXAttribute>
 ): string => {
   let value = attribute.get("value");
   if (value.isStringLiteral()) {
@@ -24,22 +23,18 @@ let getValueFromJSXAttribute = (
 export const source: Source = {
   type: "babel",
   visitor: {
-    JSXOpeningElement(path, { addMarking, filename, code }) {
+    JSXOpeningElement(path, { addMarking }) {
       if (t.isJSXIdentifier(path.node.name) && path.node.name.name === "Note") {
-        let details: string | undefined;
-        let heading: string | undefined;
+        let description: string | undefined;
         let purpose: Purpose | undefined;
 
         for (let attribute of path.get("attributes")) {
           if (attribute.isJSXAttribute()) {
-            if (attribute.node.name.name === "details") {
-              details = getValueFromJSXAttribute(attribute, code);
-            }
-            if (attribute.node.name.name === "heading") {
-              heading = getValueFromJSXAttribute(attribute, code);
+            if (attribute.node.name.name === "description") {
+              description = getValueFromJSXAttribute(attribute);
             }
             if (attribute.node.name.name === "purpose") {
-              purpose = getValueFromJSXAttribute(attribute, code);
+              purpose = getValueFromJSXAttribute(attribute);
               if (!PURPOSES.includes(purpose)) {
                 throw attribute.buildCodeFrameError(
                   `Purpose must be one of ${PURPOSES.join(", ")}`
@@ -57,22 +52,19 @@ export const source: Source = {
             "purpose must be passed to the Note component"
           );
         }
-        if (details === undefined) {
+        if (description === undefined) {
           throw path.buildCodeFrameError(
-            "details must be passed to the Note component"
+            "description must be passed to the Note component"
           );
         }
         addMarking({
-          details,
-          heading: heading || purpose,
+          description,
           purpose,
           location: {
-            filename,
             line: path.node.loc!.start.line
           }
         });
       }
     }
   }
-  // TODO: implement source
 };

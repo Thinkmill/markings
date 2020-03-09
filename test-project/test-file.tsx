@@ -1,4 +1,6 @@
 import React from "react";
 import { Note } from "@markings/react-note";
 
-let x = <Note purpose="todo" details="some content" />;
+// TODO: figure out x
+
+let x = <Note purpose="todo" description="some content" />;

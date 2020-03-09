@@ -3,13 +3,20 @@ import * as logger from "./logger";
 import fs from "fs-extra";
 import nodePath from "path";
 import { ExitError } from "./errors";
-import { Config, Marking, Source, Output } from "@markings/types";
+import {
+  Config,
+  Marking,
+  Source,
+  Output,
+  PartialMarking
+} from "@markings/types";
 import mod from "module";
 import globby from "globby";
 import { ParserPlugin } from "@babel/parser";
 import { transform, PluginObj } from "@babel/core";
+import { getPackages, Package } from "@manypkg/get-packages";
 // @ts-ignore
-import { visitors as visitorsUtils } from "@babel/traverse";
+import { visitors as visitorsUtils, Visitor } from "@babel/traverse";
 
 let parserPlugins: ParserPlugin[] = [
   "asyncGenerators",
@@ -26,8 +33,25 @@ let parserPlugins: ParserPlugin[] = [
   "optionalChaining"
 ];
 
+function getPackageFromFilename(
+  repoRoot: string,
+  filename: string,
+  packagesByDirectory: Map<string, Package>
+) {
+  let currentDir = nodePath.dirname(filename);
+  while (currentDir !== repoRoot) {
+    let maybeCurrentPackage = packagesByDirectory.get(currentDir);
+    if (maybeCurrentPackage !== undefined) {
+      return maybeCurrentPackage;
+    }
+    currentDir = nodePath.dirname(currentDir);
+  }
+  throw new Error(`could not find package from ${JSON.stringify(filename)}`);
+}
+
 (async (cwd = process.cwd()) => {
   let args = process.argv.slice(2);
+  let packagesPromise = getPackages(cwd);
   let packageJsonContent = await fs.readJson(
     nodePath.join(cwd, "package.json")
   );
@@ -51,14 +75,14 @@ let parserPlugins: ParserPlugin[] = [
 
   let markings: Marking[] = [];
 
-  let visitorsByFilename = new Map<string, Set<Source["visitor"]>>();
+  let sourcesByFilename = new Map<string, Set<string>>();
 
-  let addVisitorToFile = (filename: string, visitor: Source["visitor"]) => {
-    if (!visitorsByFilename.has(filename)) {
-      visitorsByFilename.set(filename, new Set());
+  let addBabelSourceToFile = (filename: string, source: string) => {
+    if (!sourcesByFilename.has(filename)) {
+      sourcesByFilename.set(filename, new Set());
     }
-    let visitors = visitorsByFilename.get(filename)!;
-    visitors.add(visitor);
+    let sources = sourcesByFilename.get(filename)!;
+    sources.add(source);
   };
 
   await Promise.all(
@@ -68,19 +92,42 @@ let parserPlugins: ParserPlugin[] = [
         absolute: true,
         ignore: ["**/node_modules/**/*"]
       });
-      let plugin: Source = req(sourceConfig.source).source;
 
       for (let filename of result) {
         if (/\.[jt]sx?$/.test(filename) && !/\.d\.ts$/.test(filename)) {
-          addVisitorToFile(filename, plugin.visitor);
+          addBabelSourceToFile(filename, sourceConfig.source);
         }
       }
     })
   );
+  let pkgs = await packagesPromise;
+  let packagesByDirectory = new Map(pkgs.packages.map(x => [x.dir, x]));
   // TODO: do extraction work in worker threads
   await Promise.all(
-    [...visitorsByFilename.entries()].map(async ([filename, visitors]) => {
-      let visitor: Source["visitor"] = visitorsUtils.merge([...visitors], []);
+    [...sourcesByFilename.entries()].map(async ([filename, sources]) => {
+      let visitorsArray = [...sources].map(x => req(x).source.visitor);
+
+      let visitor: Visitor = visitorsUtils.merge(
+        visitorsArray,
+        [...sources].map(source => ({
+          addMarking: (marking: PartialMarking) => {
+            markings.push({
+              location: {
+                line: marking.location.line,
+                filename
+              },
+              description: marking.description,
+              source: source,
+              package: getPackageFromFilename(
+                pkgs.root.dir,
+                filename,
+                packagesByDirectory
+              ).packageJson.name,
+              purpose: marking.purpose
+            });
+          }
+        }))
+      );
       let contents = await fs.readFile(filename, "utf8");
       transform(contents, {
         code: false,
@@ -97,17 +144,7 @@ let parserPlugins: ParserPlugin[] = [
         plugins: [
           (): PluginObj => {
             return {
-              visitor: {
-                Program(path) {
-                  path.traverse(visitor, {
-                    addMarking: marking => {
-                      markings.push(marking);
-                    },
-                    filename: nodePath.relative(cwd, filename),
-                    code: contents
-                  });
-                }
-              }
+              visitor
             };
           }
         ]
