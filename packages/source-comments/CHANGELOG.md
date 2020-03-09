@@ -1,5 +1,14 @@
 # @markings/source-comments
 
+## 0.0.4
+
+### Patch Changes
+
+- [`28a4c54`](https://github.com/Thinkmill/markings/commit/28a4c54dcb2d765234194624ccc9fa8bf70a38b8) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Remove `:` from description in markings
+
+- Updated dependencies [[`a90d1de`](https://github.com/Thinkmill/markings/commit/a90d1de4e0b1ae0177b1c9dac8629bfece351faa)]:
+  - @markings/types@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes

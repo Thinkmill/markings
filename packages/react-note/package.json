@@ -1,6 +1,6 @@
 {
   "name": "@markings/react-note",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/react-note.cjs.js",
   "module": "dist/react-note.esm.js",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "@popperjs/core": "^2.0.6",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
-    "@markings/types": "^0.0.3"
+    "@markings/types": "^0.0.4"
   },
   "peerDependencies": {
     "react": "^16.13.0",
