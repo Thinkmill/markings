@@ -55,7 +55,7 @@ importers:
       '@babel/runtime': ^7.5.5
       '@babel/traverse': ^7.8.6
       '@manypkg/get-packages': ^1.0.0
-      '@markings/types': ^0.0.2
+      '@markings/types': ^0.0.3
       '@types/babel__core': ^7.1.6
       '@types/babel__traverse': ^7.0.9
       chalk: ^2.4.2
@@ -73,18 +73,30 @@ importers:
       csv-stringify: 5.3.6
     specifiers:
       '@babel/runtime': ^7.5.5
-      '@markings/types': ^0.0.2
+      '@markings/types': ^0.0.3
       csv-stringify: ^5.3.6
   packages/output-html:
     dependencies:
+      '@babel/runtime': 7.8.7
+      '@emotion/core': 10.0.28_react@16.13.0
       '@markings/types': 'link:../types'
+      '@types/react': 16.9.23
+      '@types/react-dom': 16.9.5
+      react: 16.13.0
+      react-dom: 16.13.0_react@16.13.0
     specifiers:
-      '@markings/types': ^0.0.2
+      '@babel/runtime': ^7.5.5
+      '@emotion/core': ^10.0.28
+      '@markings/types': ^0.0.3
+      '@types/react': ^16.9.23
+      '@types/react-dom': ^16.9.5
+      react: ^16.13.0
+      react-dom: ^16.13.0
   packages/output-json:
     dependencies:
       '@markings/types': 'link:../types'
     specifiers:
-      '@markings/types': ^0.0.2
+      '@markings/types': ^0.0.3
   packages/react-note:
     dependencies:
       '@babel/runtime': 7.8.7
@@ -99,7 +111,7 @@ importers:
     specifiers:
       '@babel/runtime': ^7.5.5
       '@emotion/core': ^10.0.28
-      '@markings/types': ^0.0.2
+      '@markings/types': ^0.0.3
       '@popperjs/core': ^2.0.6
       '@types/react': ^16.9.23
       '@types/react-dom': ^16.9.5
@@ -111,7 +123,7 @@ importers:
       '@markings/types': 'link:../types'
     specifiers:
       '@babel/types': ^7.8.7
-      '@markings/types': ^0.0.2
+      '@markings/types': ^0.0.3
   packages/source-react-note:
     dependencies:
       '@babel/runtime': 7.8.7
@@ -123,7 +135,7 @@ importers:
       '@babel/runtime': ^7.8.7
       '@babel/traverse': ^7.8.6
       '@babel/types': ^7.8.6
-      '@markings/types': ^0.0.2
+      '@markings/types': ^0.0.3
       '@types/babel__traverse': ^7.0.9
   packages/types:
     dependencies:
@@ -138,6 +150,7 @@ importers:
     dependencies:
       '@markings/cli': 'link:../packages/cli'
       '@markings/output-csv': 'link:../packages/output-csv'
+      '@markings/output-html': 'link:../packages/output-html'
       '@markings/output-json': 'link:../packages/output-json'
       '@markings/react-note': 'link:../packages/react-note'
       '@markings/source-comments': 'link:../packages/source-comments'
@@ -149,12 +162,13 @@ importers:
       react: 16.13.0
       react-dom: 16.13.0_react@16.13.0
     specifiers:
-      '@markings/cli': ^0.0.5
-      '@markings/output-csv': ^0.0.1
-      '@markings/output-json': ^0.0.2
-      '@markings/react-note': ^0.0.0
-      '@markings/source-comments': ^0.0.2
-      '@markings/source-react-note': ^0.0.3
+      '@markings/cli': ^0.0.6
+      '@markings/output-csv': ^0.0.2
+      '@markings/output-html': ^0.0.3
+      '@markings/output-json': ^0.0.3
+      '@markings/react-note': ^0.0.1
+      '@markings/source-comments': ^0.0.3
+      '@markings/source-react-note': ^0.0.4
       '@preconstruct/next': ^1.0.1
       '@types/node': ^13.7.7
       '@types/react': ^16.9.23

@@ -12,10 +12,10 @@ export const source: Source = {
       for (let comment of comments) {
         if (comment.type === "CommentLine") {
           let value = comment.value.trim();
-          let match = value.match(/([^:]+)(.+)/);
+          let match = value.match(/([^:]+):(.+)/);
           if (match !== null && commentTypes.includes(match[1])) {
             addMarking({
-              description: match[2],
+              description: match[2].trim(),
               purpose: match[1] === "QUESTION" ? "question" : "todo",
               location: {
                 line: comment.loc.start.line

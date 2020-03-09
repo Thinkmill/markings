@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@markings/output-html",
   "version": "0.0.3",
   "main": "dist/output-html.cjs.js",
@@ -7,6 +6,12 @@
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-html",
   "dependencies": {
-    "@markings/types": "^0.0.3"
+    "@babel/runtime": "^7.5.5",
+    "@emotion/core": "^10.0.28",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "@markings/types": "^0.0.3",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   }
 }

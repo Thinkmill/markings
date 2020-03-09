@@ -6,6 +6,7 @@
   "dependencies": {
     "@markings/cli": "^0.0.6",
     "@markings/output-csv": "^0.0.2",
+    "@markings/output-html": "^0.0.3",
     "@markings/output-json": "^0.0.3",
     "@markings/react-note": "^0.0.1",
     "@markings/source-comments": "^0.0.3",
@@ -45,6 +46,10 @@
       {
         "output": "@markings/output-csv",
         "filename": "output.csv"
+      },
+      {
+        "output": "@markings/output-html",
+        "filename": "output.html"
       }
     ]
   }
