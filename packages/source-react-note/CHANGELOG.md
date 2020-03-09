@@ -1,5 +1,14 @@
 # @markings/source-react-note
 
+## 0.0.5
+
+### Patch Changes
+
+- [`a90d1de`](https://github.com/Thinkmill/markings/commit/a90d1de4e0b1ae0177b1c9dac8629bfece351faa) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Default purpose to todo
+
+- Updated dependencies [[`a90d1de`](https://github.com/Thinkmill/markings/commit/a90d1de4e0b1ae0177b1c9dac8629bfece351faa)]:
+  - @markings/types@0.0.4
+
 ## 0.0.4
 
 ### Patch Changes

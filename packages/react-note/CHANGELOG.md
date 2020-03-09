@@ -1,9 +1,15 @@
 # @markings/react-note
 
-## 0.0.1
+## 0.0.2
+
 ### Patch Changes
 
+- Updated dependencies [[`a90d1de`](https://github.com/Thinkmill/markings/commit/a90d1de4e0b1ae0177b1c9dac8629bfece351faa)]:
+  - @markings/types@0.0.4
 
+## 0.0.1
+
+### Patch Changes
 
 - [`0810c19`](https://github.com/Thinkmill/markings/commit/0810c19f686f1cc4baa801aa74a1ef7dc24f7c38) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Initial release
 
