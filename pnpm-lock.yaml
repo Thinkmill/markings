@@ -87,6 +87,7 @@ importers:
       '@markings/types': ^0.0.2
   packages/react-note:
     dependencies:
+      '@babel/runtime': 7.8.7
       '@emotion/core': 10.0.28_react@16.13.0
       '@markings/types': 'link:../types'
       '@popperjs/core': 2.0.6
@@ -96,6 +97,7 @@ importers:
       react: 16.13.0
       react-dom: 16.13.0_react@16.13.0
     specifiers:
+      '@babel/runtime': ^7.5.5
       '@emotion/core': ^10.0.28
       '@markings/types': ^0.0.2
       '@popperjs/core': ^2.0.6
