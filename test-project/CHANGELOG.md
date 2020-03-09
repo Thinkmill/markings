@@ -1,5 +1,12 @@
 # @markings/test-project
 
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`b80c6b4`](https://github.com/Thinkmill/markings/commit/b80c6b401ac828ae805b9102aa1a6b12680a0e4c)]:
+  - @markings/output-html@0.0.6
+
 ## 1.0.9
 
 ### Patch Changes
