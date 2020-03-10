@@ -17,16 +17,21 @@ import { color, elevation, radii, spacing } from "../tokens";
 import { CrossIcon, PinIcon } from "../icons";
 import { usePopover } from "../popover";
 
-import { NoteProps, useNoteRegistry } from "./NoteContext";
+import { NoteType, useNoteRegistry, ConfigType } from "./NoteContext";
 import { Purpose } from "@markings/types";
 
 /**
  * Renders all of the UI to do with viewing the list of notes.
  */
-export const NotePanel = () => {
+export const NotePanel = ({
+  config,
+  notes
+}: {
+  config: ConfigType;
+  notes: TItems;
+}) => {
   const blanketElement = useRef<HTMLElement>(null);
   const [activeNote, setActiveNote] = useState<string | null>(null);
-  const { notes, config } = useNoteRegistry();
   const {
     isOpen,
     openPopover,
@@ -117,10 +122,6 @@ export const NotePanel = () => {
                         >
                           <ItemBody>
                             <p>{item.description}</p>
-                            <ItemMeta
-                              // @ts-ignore
-                              meta={item.meta}
-                            />
                           </ItemBody>
                           <ItemSymbol>
                             {item.issue && `#${item.issue}`}
@@ -530,10 +531,11 @@ const Blanket = ({ element }: BlanketProps) => {
 // ------------------------------
 
 type TItems = {
-  [id: string]: NoteProps;
+  [id: string]: NoteType;
 };
+
 type TGroupedItems = {
-  [Key in Purpose]: (NoteProps & { id: string })[];
+  [Key in Purpose]: (NoteType & { id: string })[];
 };
 
 function groupItems(obj: TItems): TGroupedItems {

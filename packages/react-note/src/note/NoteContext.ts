@@ -9,7 +9,6 @@ export type NoteType = {
   issue?: IssueId;
   purpose: Purpose;
 };
-export type NoteProps = NoteType;
 
 export type ConfigType = {
   resolveIssueCreatePath: ({
@@ -23,22 +22,11 @@ export type ConfigType = {
   resolvePrPath: (id: IssueId) => string;
 };
 export type ContextType = {
-  notes: { [id: string]: NoteType };
-  config: ConfigType;
   register: (props: NoteType) => string | undefined;
   unregister: (id: string) => void;
 };
 
-export const NoteContext = createContext<ContextType>({
-  notes: {},
-  config: {
-    resolveIssueCreatePath: () => "",
-    resolveIssuePath: id => "",
-    resolvePrPath: id => ""
-  },
-  register: props => "",
-  unregister: id => null
-});
+export const NoteContext = createContext<ContextType | undefined>(undefined);
 
 export const useNoteRegistry = () => {
   const ctx = useContext(NoteContext);

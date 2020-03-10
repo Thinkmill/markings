@@ -33,7 +33,15 @@ export const NotePanel = ({ markings }: { markings: Marking[] }) => {
           <Dialog key={pkgName}>
             <DialogHeader>
               <span css={{ fontWeight: "bold" }}>
-                {plural(entries.length, "Note", "Notes")} in {pkgName}
+                {plural(
+                  entries.reduce(
+                    (accum, [_purpose, val]) => accum + val.length,
+                    0
+                  ),
+                  "Note",
+                  "Notes"
+                )}{" "}
+                in {pkgName}
               </span>
             </DialogHeader>
             {entries.map(([purpose, items]) => (

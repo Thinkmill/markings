@@ -22,11 +22,7 @@ export default () => (
       <p>I should have a related note...</p>
     </Note>
     {paragraphArray.map((p, i) => (
-      <Note
-        key={i}
-        description={p}
-        purpose={i > 9 ? "todo" : i > 4 ? "question" : "rethink"}
-      >
+      <Note key={i} description={p} purpose={i > 9 ? "todo" : "question"}>
         <p>I should have a related note...</p>
       </Note>
     ))}
