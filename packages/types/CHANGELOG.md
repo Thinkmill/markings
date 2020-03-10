@@ -1,5 +1,11 @@
 # @markings/types
 
+## 0.0.5
+
+### Patch Changes
+
+- [`b753444`](https://github.com/Thinkmill/markings/commit/b753444c8d0c16fd5be18dfa57fbe40ca294ac11) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Remove rethink and addition from purposes
+
 ## 0.0.4
 
 ### Patch Changes

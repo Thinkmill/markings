@@ -1,5 +1,12 @@
 # @markings/source-react-note
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`b753444`](https://github.com/Thinkmill/markings/commit/b753444c8d0c16fd5be18dfa57fbe40ca294ac11)]:
+  - @markings/types@0.0.5
+
 ## 0.0.5
 
 ### Patch Changes

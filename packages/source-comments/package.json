@@ -1,12 +1,12 @@
 {
   "name": "@markings/source-comments",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/source-comments.cjs.js",
   "module": "dist/source-comments.esm.js",
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/source-comments",
   "dependencies": {
     "@babel/types": "^7.8.7",
-    "@markings/types": "^0.0.4"
+    "@markings/types": "^0.0.5"
   }
 }

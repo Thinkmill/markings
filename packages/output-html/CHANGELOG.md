@@ -1,5 +1,14 @@
 # @markings/output-html
 
+## 0.0.7
+
+### Patch Changes
+
+- [`b753444`](https://github.com/Thinkmill/markings/commit/b753444c8d0c16fd5be18dfa57fbe40ca294ac11) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Show correct number of notes
+
+- Updated dependencies [[`b753444`](https://github.com/Thinkmill/markings/commit/b753444c8d0c16fd5be18dfa57fbe40ca294ac11)]:
+  - @markings/types@0.0.5
+
 ## 0.0.6
 
 ### Patch Changes
