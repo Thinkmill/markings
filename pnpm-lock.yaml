@@ -40,12 +40,14 @@ importers:
       '@markings/types': 'link:../types'
       '@types/babel__core': 7.1.6
       '@types/babel__traverse': 7.0.9
+      '@types/parse-github-url': 1.0.0
       chalk: 2.4.2
       fs-extra: 8.1.0
       globby: 11.0.0
       meow: 5.0.0
       normalize-path: 3.0.0
       p-limit: 2.2.2
+      parse-github-url: 1.0.2
     devDependencies:
       fixturez: 1.1.0
       strip-ansi: 6.0.0
@@ -55,9 +57,10 @@ importers:
       '@babel/runtime': ^7.5.5
       '@babel/traverse': ^7.8.6
       '@manypkg/get-packages': ^1.0.0
-      '@markings/types': ^0.0.3
+      '@markings/types': ^0.0.5
       '@types/babel__core': ^7.1.6
       '@types/babel__traverse': ^7.0.9
+      '@types/parse-github-url': ^1.0.0
       chalk: ^2.4.2
       fixturez: ^1.1.0
       fs-extra: ^8.1.0
@@ -65,6 +68,7 @@ importers:
       meow: ^5.0.0
       normalize-path: ^3.0.0
       p-limit: ^2.2.1
+      parse-github-url: ^1.0.2
       strip-ansi: ^6.0.0
   packages/output-csv:
     dependencies:
@@ -2730,6 +2734,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Uo4chgKbnPNlxQwoFmYIwctkQVkMMmsAoGGU4JKwLuvBefF0pCq4FybNSnfkfRCpC7ZW7kttcC/TrRtAJsvGtg==
+  /@types/node/13.9.1:
+    dev: false
+    resolution:
+      integrity: sha512-E6M6N0blf/jiZx8Q3nb0vNaswQeEyn0XlupO+xN6DtJ6r6IT4nXrTry7zhIfYvFCl3/8Cu6WIysmUBKiqV0bqQ==
+  /@types/parse-github-url/1.0.0:
+    dependencies:
+      '@types/node': 13.9.1
+    dev: false
+    resolution:
+      integrity: sha512-YNsYjdFmlfwIUGc47jfkb4BvFH9rdVbw80DxqSIQzQ3QpgaekmH2BcGKmEENzQRkeODoT/GiDrsJeztni+diAQ==
   /@types/parse-json/4.0.0:
     dev: false
     resolution:

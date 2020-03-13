@@ -49,13 +49,27 @@ export const NotePanel = ({ markings }: { markings: Marking[] }) => {
                 <GroupTitle>{purpose}</GroupTitle>
                 <ul css={{ listStyle: "none", margin: 0, padding: 0 }}>
                   {items.map((item, index) => {
+                    let Comp: any = item.location.link ? "a" : "span";
                     return (
                       <Item key={index}>
-                        <ItemAnchor>
+                        <Comp
+                          href={item.location.link}
+                          css={{
+                            alignItems: "flex-start",
+                            color: color.N600,
+                            display: "flex",
+                            fontSize: 14,
+                            // paddingLeft: GUTTER_LG,
+                            paddingRight: GUTTER_LG,
+                            paddingBottom: GUTTER_SM,
+                            paddingTop: GUTTER_SM,
+                            textDecoration: "none"
+                          }}
+                        >
                           <ItemBody>
                             <p>{item.description}</p>
                           </ItemBody>
-                        </ItemAnchor>
+                        </Comp>
                       </Item>
                     );
                   })}
@@ -164,22 +178,7 @@ const Item = (props: HTMLAttributes<HTMLLIElement>) => (
     {...props}
   />
 );
-const ItemAnchor = (props: AllHTMLAttributes<HTMLAnchorElement>) => (
-  <span
-    css={{
-      alignItems: "flex-start",
-      color: color.N600,
-      display: "flex",
-      fontSize: 14,
-      // paddingLeft: GUTTER_LG,
-      paddingRight: GUTTER_LG,
-      paddingBottom: GUTTER_SM,
-      paddingTop: GUTTER_SM,
-      textDecoration: "none"
-    }}
-    {...props}
-  />
-);
+
 const ItemBody = (props: SCProps) => (
   <div
     css={{

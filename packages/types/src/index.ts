@@ -16,6 +16,7 @@ export type Marking = {
   location: {
     line: number;
     filename: string;
+    link?: string;
   };
   purpose: Purpose;
   description: string;

@@ -17,6 +17,7 @@ import { transform, PluginObj } from "@babel/core";
 import { getPackages, Package } from "@manypkg/get-packages";
 // @ts-ignore
 import { visitors as visitorsUtils, Visitor } from "@babel/traverse";
+import parseGithubUrl from "parse-github-url";
 
 let parserPlugins: ParserPlugin[] = [
   "asyncGenerators",
@@ -102,6 +103,17 @@ function getPackageFromFilename(
     })
   );
   let pkgs = await packagesPromise;
+  let getUrl = (filename: string, line: number): string | undefined => {
+    return;
+  };
+  if (typeof (pkgs.root.packageJson as any).repository === "string") {
+    const parsed = parseGithubUrl((pkgs.root.packageJson as any).repository);
+    if (parsed !== null && parsed.host === "github.com") {
+      getUrl = (filename, line) => {
+        return `https://github.com/${parsed.owner}/${parsed.name}/blob/master/${filename}#L${line}`;
+      };
+    }
+  }
   let packagesByDirectory = new Map(pkgs.packages.map(x => [x.dir, x]));
   // TODO: do extraction work in worker threads
   await Promise.all(
@@ -115,7 +127,11 @@ function getPackageFromFilename(
             markings.push({
               location: {
                 line: marking.location.line,
-                filename
+                filename,
+                link: getUrl(
+                  nodePath.relative(pkgs.root.dir, filename),
+                  marking.location.line
+                )
               },
               description: marking.description,
               source: source,
