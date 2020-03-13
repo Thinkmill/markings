@@ -1,5 +1,11 @@
 # @markings/types
 
+## 0.0.6
+
+### Patch Changes
+
+- [`1a91ed5`](https://github.com/Thinkmill/markings/commit/1a91ed542432d652ba2f8f56c26226f9840cd5ed) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Add links to where a marking is located on GitHub
+
 ## 0.0.5
 
 ### Patch Changes
