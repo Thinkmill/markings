@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with-purpose 1`] = `
+<Note description="something" purpose="question" />;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "something",
+    "purpose": "question",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
+
+exports[`without-purpose 1`] = `
+<Note description="something" />;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "something",
+    "purpose": "todo",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
