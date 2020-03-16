@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixme 1`] = `
+// FIXME: something
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "something",
+    "purpose": "todo",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
+
+exports[`question 1`] = `
+// QUESTION: a question
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "a question",
+    "purpose": "question",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
+
+exports[`todo 1`] = `
+// TODO: thing
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "thing",
+    "purpose": "todo",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;

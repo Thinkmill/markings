@@ -124,9 +124,11 @@ importers:
   packages/source-comments:
     dependencies:
       '@babel/types': 7.8.7
+      '@markings/test-utils': 'link:../test-utils'
       '@markings/types': 'link:../types'
     specifiers:
       '@babel/types': ^7.8.7
+      '@markings/test-utils': ^0.0.0
       '@markings/types': ^0.0.6
   packages/source-react-note:
     dependencies:
