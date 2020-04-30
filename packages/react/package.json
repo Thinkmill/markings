@@ -1,10 +1,10 @@
 {
-  "name": "@markings/react-note",
+  "name": "@markings/react",
   "version": "0.0.4",
-  "main": "dist/react-note.cjs.js",
-  "module": "dist/react-note.esm.js",
+  "main": "dist/react.cjs.js",
+  "module": "dist/react.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/react-note",
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/react",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@emotion/core": "^10.0.28",

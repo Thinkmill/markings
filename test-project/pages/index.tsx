@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Note } from "@markings/react-note";
+import { Marking } from "@markings/react";
 
 export default () => (
   <div
@@ -8,23 +8,23 @@ export default () => (
       marginRight: "auto",
       maxWidth: 640,
       paddingLeft: 20,
-      paddingRight: 20
+      paddingRight: 20,
     }}
   >
     <h1>Markings: Note</h1>
     <p>This is the dev environment for building markings' UI.</p>
     <hr />
-    <Note
+    <Marking
       description="Spike how easy it would be to enhance the view panel with issue data"
       purpose="todo"
       issue="8"
     >
       <p>I should have a related note...</p>
-    </Note>
+    </Marking>
     {paragraphArray.map((p, i) => (
-      <Note key={i} description={p} purpose={i > 9 ? "todo" : "question"}>
+      <Marking key={i} description={p} purpose={i > 9 ? "todo" : "question"}>
         <p>I should have a related note...</p>
-      </Note>
+      </Marking>
     ))}
   </div>
 );
@@ -44,5 +44,5 @@ const paragraphArray = [
   "Ice cream marzipan liquorice candy canes sesame snaps danish soufflé lollipop candy canes.",
   "Lemon drops cotton candy pudding.",
   "Pie cake soufflé cupcake jujubes sugar plum.",
-  "Liquorice lollipop oat cake."
+  "Liquorice lollipop oat cake.",
 ];

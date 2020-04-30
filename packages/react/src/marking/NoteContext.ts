@@ -1,10 +1,10 @@
-import { ReactNode, createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 
 import { Purpose } from "@markings/types";
 
 type IssueId = number | string;
 
-export type NoteType = {
+export type MarkingType = {
   description: string;
   issue?: IssueId;
   purpose: Purpose;
@@ -13,7 +13,7 @@ export type NoteType = {
 export type ConfigType = {
   resolveIssueCreatePath: ({
     description,
-    purpose
+    purpose,
   }: {
     description: string;
     purpose: Purpose;
@@ -22,16 +22,16 @@ export type ConfigType = {
   resolvePrPath: (id: IssueId) => string;
 };
 export type ContextType = {
-  register: (props: NoteType) => string | undefined;
+  register: (props: MarkingType) => string | undefined;
   unregister: (id: string) => void;
 };
 
-export const NoteContext = createContext<ContextType | undefined>(undefined);
+export const MarkingContext = createContext<ContextType | undefined>(undefined);
 
-export const useNoteRegistry = () => {
-  const ctx = useContext(NoteContext);
+export const useMarkingRegistry = () => {
+  const ctx = useContext(MarkingContext);
   if (!ctx) {
-    throw Error("You must wrap the app with the NoteProvider.");
+    throw Error("You must wrap the app with the MarkingProvider.");
   }
   return ctx;
 };

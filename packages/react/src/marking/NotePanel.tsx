@@ -8,7 +8,7 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
 } from "react";
 import { createPortal } from "react-dom";
 import { jsx } from "@emotion/core";
@@ -17,15 +17,15 @@ import { color, elevation, radii, spacing } from "../tokens";
 import { CrossIcon, PinIcon } from "../icons";
 import { usePopover } from "../popover";
 
-import { NoteType, useNoteRegistry, ConfigType } from "./NoteContext";
+import { MarkingType, ConfigType } from "./NoteContext";
 import { Purpose } from "@markings/types";
 
 /**
  * Renders all of the UI to do with viewing the list of notes.
  */
-export const NotePanel = ({
+export const MarkingPanel = ({
   config,
-  notes
+  notes,
 }: {
   config: ConfigType;
   notes: TItems;
@@ -37,7 +37,7 @@ export const NotePanel = ({
     openPopover,
     closePopover,
     dialogRef,
-    triggerRef
+    triggerRef,
   } = usePopover("top-end");
 
   const itemMouseEnter = (id: string) => () => {
@@ -52,7 +52,7 @@ export const NotePanel = ({
       el.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
-        inline: "start"
+        inline: "start",
       });
     }
   };
@@ -100,7 +100,7 @@ export const NotePanel = ({
               <Group key={purpose}>
                 <GroupTitle>{purpose}</GroupTitle>
                 <ul css={{ listStyle: "none", margin: 0, padding: 0 }}>
-                  {items.map(item => {
+                  {items.map((item) => {
                     const href = item.issue
                       ? config.resolveIssuePath(item.issue)
                       : config.resolveIssueCreatePath(item);
@@ -187,8 +187,8 @@ const Fab = forwardRef<HTMLButtonElement>((props, ref) => {
         zIndex: elevation.E400,
 
         ":hover": {
-          boxShadow: `0 0 0 2px ${color.P400}`
-        }
+          boxShadow: `0 0 0 2px ${color.P400}`,
+        },
       }}
       type="button"
       {...props}
@@ -227,7 +227,7 @@ const Dialog = forwardRef<HTMLDivElement>((props, consumerRef) => {
         fontFeatureSettings: "liga",
         textRendering: "optimizelegibility",
         WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale"
+        MozOsxFontSmoothing: "grayscale",
       }}
       {...props}
     />
@@ -256,15 +256,15 @@ const DialogHeader = (props: SCProps) => (
       p: {
         color: color.N400,
         fontSize: 12,
-        margin: 0
+        margin: 0,
       },
       a: {
         color: color.N600,
         textDecoration: "none",
         ":hover": {
-          textDecoration: "underline"
-        }
-      }
+          textDecoration: "underline",
+        },
+      },
     }}
     {...props}
   />
@@ -290,15 +290,15 @@ const DialogFooter = (props: SCProps) => (
       p: {
         color: color.N400,
         fontSize: 12,
-        margin: 0
+        margin: 0,
       },
       a: {
         color: color.N600,
         textDecoration: "none",
         ":hover": {
-          textDecoration: "underline"
-        }
-      }
+          textDecoration: "underline",
+        },
+      },
     }}
     {...props}
   />
@@ -308,7 +308,7 @@ const ScrollPane = (props: SCProps) => (
     css={{
       flex: 1,
       overflowY: "auto",
-      WebkitOverflowScrolling: "touch"
+      WebkitOverflowScrolling: "touch",
     }}
     {...props}
   />
@@ -321,7 +321,7 @@ const Group = (props: SCProps) => (
       // boxShadow: `0 -1px 0 ${color.N30}`,
       paddingLeft: GUTTER_LG,
       // paddingRight: GUTTER_LG,
-      paddingBottom: GUTTER_LG
+      paddingBottom: GUTTER_LG,
       // paddingTop: GUTTER_SM,
     }}
     {...props}
@@ -342,7 +342,7 @@ const GroupTitle = (props: SCProps) => (
       paddingTop: GUTTER_LG,
       position: "sticky",
       textTransform: "uppercase",
-      top: 0
+      top: 0,
     }}
     {...props}
   />
@@ -357,8 +357,8 @@ const Item = (props: HTMLAttributes<HTMLLIElement>) => (
       padding: 0,
 
       ":not(:nth-of-type(1))": {
-        borderTop: `1px dotted ${color.N40}`
-      }
+        borderTop: `1px dotted ${color.N40}`,
+      },
     }}
     {...props}
   />
@@ -375,7 +375,7 @@ const ItemAnchor = (props: AllHTMLAttributes<HTMLAnchorElement>) => (
       paddingRight: GUTTER_LG,
       paddingBottom: GUTTER_SM,
       paddingTop: GUTTER_SM,
-      textDecoration: "none"
+      textDecoration: "none",
     }}
     {...props}
   />
@@ -388,8 +388,8 @@ const ItemBody = (props: SCProps) => (
       // paddingRight: spacing.small,
 
       p: {
-        margin: 0
-      }
+        margin: 0,
+      },
     }}
     {...props}
   />
@@ -405,7 +405,7 @@ const ItemSymbol = (props: SCProps) => (
       minHeight: "1.6em",
       minWidth: 48,
 
-      "a:hover &": { color: color.P400 }
+      "a:hover &": { color: color.P400 },
     }}
     {...props}
   />
@@ -448,7 +448,7 @@ const ItemLabel = ({ bg, ...props }: ItemLabelProps) => {
         marginTop: 4,
         marginRight: 4,
         paddingLeft: 4,
-        paddingRight: 4
+        paddingRight: 4,
       }}
       style={{ backgroundColor: `#${bg}` }}
       {...props}
@@ -473,7 +473,7 @@ const ItemAssignee = ({ assignee }: ItemAssigneeProps) => {
         height: 16,
         marginRight: 4,
         marginTop: 4,
-        width: 16
+        width: 16,
       }}
       src={assignee.avatar_url}
       alt={`Avatar for ${assignee.login}`}
@@ -513,14 +513,14 @@ const Blanket = ({ element }: BlanketProps) => {
         // padding: gutter,
         position: "absolute",
         pointerEvents: "none",
-        zIndex: elevation.E400
+        zIndex: elevation.E400,
       }}
       style={{
         // ...rounding,
         top: rect.top + window.scrollY,
         left: rect.left + window.scrollX,
         height: rect.height,
-        width: rect.width
+        width: rect.width,
       }}
     />,
     document.body
@@ -531,11 +531,11 @@ const Blanket = ({ element }: BlanketProps) => {
 // ------------------------------
 
 type TItems = {
-  [id: string]: NoteType;
+  [id: string]: MarkingType;
 };
 
 type TGroupedItems = {
-  [Key in Purpose]: (NoteType & { id: string })[];
+  [Key in Purpose]: (MarkingType & { id: string })[];
 };
 
 function groupItems(obj: TItems): TGroupedItems {
@@ -572,7 +572,7 @@ function hexToRgb(hexString: string): RGB {
   return [r, g, b];
 }
 function luminanace(rgb: RGB) {
-  var a = rgb.map(function(v) {
+  var a = rgb.map(function (v) {
     v /= 255;
     return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
   });

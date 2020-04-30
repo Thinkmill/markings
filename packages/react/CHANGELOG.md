@@ -1,4 +1,4 @@
-# @markings/react-note
+# @markings/react
 
 ## 0.0.4
 

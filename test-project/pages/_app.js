@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NoteProvider } from "@markings/react-note";
+import { MarkingProvider } from "@markings/react";
 
 import "./index.css";
 
@@ -8,12 +8,13 @@ const config = {
     `https://github.com/thinkmill/markings/issues/new?title=${purpose}&body=${encodeURIComponent(
       description
     )}`,
-  resolveIssuePath: id => `https://github.com/thinkmill/markings/issues/${id}`,
-  resolvePrPath: id => `https://github.com/thinkmill/markings/pull/${id}`
+  resolveIssuePath: (id) =>
+    `https://github.com/thinkmill/markings/issues/${id}`,
+  resolvePrPath: (id) => `https://github.com/thinkmill/markings/pull/${id}`,
 };
 
 export default ({ Component, pageProps }) => (
-  <NoteProvider config={config}>
+  <MarkingProvider config={config}>
     <Component {...pageProps} />
-  </NoteProvider>
+  </MarkingProvider>
 );

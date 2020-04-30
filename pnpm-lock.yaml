@@ -101,7 +101,7 @@ importers:
       '@markings/types': 'link:../types'
     specifiers:
       '@markings/types': ^0.0.6
-  packages/react-note:
+  packages/react:
     dependencies:
       '@babel/runtime': 7.8.7
       '@emotion/core': 10.0.28_react@16.13.0
@@ -130,11 +130,11 @@ importers:
       '@babel/types': ^7.8.7
       '@markings/test-utils': ^0.0.0
       '@markings/types': ^0.0.6
-  packages/source-react-note:
+  packages/source-react:
     dependencies:
       '@babel/runtime': 7.8.7
       '@babel/traverse': 7.8.6
-      '@babel/types': 7.8.6
+      '@babel/types': 7.8.7
       '@markings/test-utils': 'link:../test-utils'
       '@markings/types': 'link:../types'
       '@types/babel__traverse': 7.0.9
@@ -204,9 +204,9 @@ importers:
       '@markings/output-csv': 'link:../packages/output-csv'
       '@markings/output-html': 'link:../packages/output-html'
       '@markings/output-json': 'link:../packages/output-json'
-      '@markings/react-note': 'link:../packages/react-note'
+      '@markings/react': 'link:../packages/react'
       '@markings/source-comments': 'link:../packages/source-comments'
-      '@markings/source-react-note': 'link:../packages/source-react-note'
+      '@markings/source-react': 'link:../packages/source-react'
       '@preconstruct/next': 1.0.1
       '@types/node': 13.7.7
       '@types/react': 16.9.23
@@ -218,9 +218,9 @@ importers:
       '@markings/output-csv': ^0.0.5
       '@markings/output-html': ^0.0.8
       '@markings/output-json': ^0.0.6
-      '@markings/react-note': ^0.0.4
+      '@markings/react': ^0.0.4
       '@markings/source-comments': ^0.0.6
-      '@markings/source-react-note': ^0.0.7
+      '@markings/source-react': ^0.0.7
       '@preconstruct/next': ^1.0.1
       '@types/node': ^13.7.7
       '@types/react': ^16.9.23

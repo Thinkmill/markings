@@ -6,21 +6,21 @@ import {
   useEffect,
   useRef,
   useState,
-  useMemo
+  useMemo,
 } from "react";
 
 import { jsx } from "@emotion/core";
 
 import {
-  NoteContext,
-  NoteType,
+  MarkingContext,
+  MarkingType,
   ConfigType,
-  useNoteRegistry,
-  ContextType
+  useMarkingRegistry,
+  ContextType,
 } from "./NoteContext";
-import { NotePanel } from "./NotePanel";
+import { MarkingPanel } from "./NotePanel";
 
-type TNotes = { [id: string]: NoteType };
+type RecordOfMarkings = { [id: string]: MarkingType };
 
 // Provider
 // ------------------------------
@@ -30,43 +30,43 @@ type ProviderProps = {
   config: ConfigType;
 };
 
-export const NoteProvider = ({ children, config }: ProviderProps) => {
-  const [notes, setNotes] = useState<TNotes>({});
+export const MarkingProvider = ({ children, config }: ProviderProps) => {
+  const [notes, setNotes] = useState<RecordOfMarkings>({});
 
   const ctx: ContextType = useMemo(() => {
     return {
-      register: note => {
+      register: (note) => {
         const id = generateUID(note);
 
         if (id in notes) {
           return;
         }
 
-        setNotes(currentNotes => ({ ...currentNotes, [id]: note }));
+        setNotes((currentNotes) => ({ ...currentNotes, [id]: note }));
         return id;
       },
-      unregister: id => {
+      unregister: (id) => {
         setNotes(({ [id]: unusedValue, ...restNotes }) => restNotes);
-      }
+      },
     };
   }, []);
 
   return (
-    <NoteContext.Provider value={ctx}>
+    <MarkingContext.Provider value={ctx}>
       {children}
-      <NotePanel config={config} notes={notes} />
-    </NoteContext.Provider>
+      <MarkingPanel config={config} notes={notes} />
+    </MarkingContext.Provider>
   );
 };
 
 /**
  * Registers notes and wraps a unique attribute around the Note component
  */
-export const Note = ({
+export const Marking = ({
   children,
   ...props
-}: NoteType & { children: ReactNode }) => {
-  const { register, unregister } = useNoteRegistry();
+}: MarkingType & { children: ReactNode }) => {
+  const { register, unregister } = useMarkingRegistry();
   const noteId = useRef<string>();
 
   useEffect(() => {
