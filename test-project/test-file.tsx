@@ -1,10 +1,10 @@
 import React from "react";
-import { Note } from "@markings/react-note";
+import { Marking } from "@markings/react";
 
 // TODO: figure out x
 
 let x = (
-  <Note purpose="todo" description="some content">
+  <Marking purpose="todo" description="some content">
     content
-  </Note>
+  </Marking>
 );

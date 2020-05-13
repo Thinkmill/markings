@@ -5,14 +5,16 @@ import { NodePath } from "@babel/traverse";
 let getValueFromJSXAttribute = (
   attribute: NodePath<t.JSXAttribute>
 ): string => {
-  let value = attribute.get("value");
-  if (value.isStringLiteral()) {
-    return value.node.value;
-  }
-  if (value.isJSXExpressionContainer()) {
-    let expression = value.get("expression");
-    if (expression.isStringLiteral()) {
-      return expression.node.value;
+  let value = attribute.node.value;
+  if (value !== null) {
+    if (value.type === "StringLiteral") {
+      return value.value;
+    }
+    if (value.type === "JSXExpressionContainer") {
+      let expression = value.expression;
+      if (expression.type === "StringLiteral") {
+        return expression.value;
+      }
     }
   }
   throw attribute.buildCodeFrameError(
@@ -59,10 +61,10 @@ export const source: Source = {
           description,
           purpose,
           location: {
-            line: path.node.loc!.start.line
-          }
+            line: path.node.loc!.start.line,
+          },
         });
       }
-    }
-  }
+    },
+  },
 };
