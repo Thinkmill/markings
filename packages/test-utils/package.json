@@ -1,6 +1,6 @@
 {
   "name": "@markings/test-utils",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/test-utils.cjs.js",
   "module": "dist/test-utils.esm.js",
   "license": "MIT",

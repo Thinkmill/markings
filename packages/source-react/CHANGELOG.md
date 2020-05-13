@@ -1,5 +1,16 @@
 # @markings/source-react-note
 
+## 0.1.0
+
+### Minor Changes
+
+- [`d58bc1f`](https://github.com/Thinkmill/markings/commit/d58bc1f587c92a7c595ba062196fc74a8f7ea7a9) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `@markings/source-react-note` to `@markings/react-note`
+
+### Patch Changes
+
+- Updated dependencies [[`a417548`](https://github.com/Thinkmill/markings/commit/a4175484f2af47e9db1f17677e6d8a33066267e7)]:
+  - @markings/test-utils@0.0.1
+
 ## 0.0.7
 
 ### Patch Changes
