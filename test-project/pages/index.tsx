@@ -17,7 +17,6 @@ export default () => (
     <Marking
       description="Spike how easy it would be to enhance the view panel with issue data"
       purpose="todo"
-      issue="8"
     >
       <p>I should have a related note...</p>
     </Marking>
