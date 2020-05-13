@@ -1,5 +1,20 @@
 # @markings/test-project
 
+## 1.0.14
+
+### Patch Changes
+
+- [`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update dependencies
+
+- Updated dependencies [[`601eabb`](https://github.com/Thinkmill/markings/commit/601eabb72c53e4ff10930888808729e6830b7a9b), [`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea), [`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea)]:
+  - @markings/react@0.1.1
+  - @markings/cli@0.0.11
+  - @markings/output-csv@0.0.6
+  - @markings/output-html@0.0.9
+  - @markings/source-react@0.1.1
+  - @markings/source-comments@0.0.8
+  - @markings/output-json@0.0.7
+
 ## 1.0.13
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @markings/react
 
+## 0.1.1
+
+### Patch Changes
+
+- [`601eabb`](https://github.com/Thinkmill/markings/commit/601eabb72c53e4ff10930888808729e6830b7a9b) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix marking location highlighting
+
+* [`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update dependencies
+
+- [`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Move @types/react and @types/react-dom to devDependencies
+
+- Updated dependencies [[`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea)]:
+  - @markings/types@0.0.7
+
 ## 0.1.0
 
 ### Minor Changes
