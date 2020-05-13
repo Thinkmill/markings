@@ -1,0 +1,18 @@
+{
+  "name": "@markings/eslint-plugin",
+  "version": "0.0.5",
+  "main": "dist/eslint-plugin.cjs.js",
+  "module": "dist/eslint-plugin.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/Thinkmill/markings/tree/master/packages/eslint-plugin",
+  "dependencies": {
+    "@typescript-eslint/experimental-utils": "2.30.0",
+    "find-up": "^4.1.0"
+  },
+  "peerDependencies": {
+    "eslint": "*"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}

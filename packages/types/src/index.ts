@@ -1,4 +1,5 @@
 import { Visitor } from "@babel/traverse";
+import { TSESTree, TSESLint } from "@typescript-eslint/experimental-utils";
 
 export const PURPOSES = ["question", "todo"] as const;
 
@@ -22,6 +23,7 @@ export type Marking = {
   description: string;
   source: string;
   package: string;
+  id: string;
 };
 
 export type Source = {
@@ -29,6 +31,20 @@ export type Source = {
   visitor: Visitor<{
     addMarking: (marking: PartialMarking) => void;
   }>;
+  eslint: (
+    node: TSESTree.Program,
+    report: (opts: {
+      range: [number, number];
+      fix: (
+        fixer: TSESLint.RuleFixer
+      ) =>
+        | null
+        | TSESLint.RuleFix
+        | TSESLint.RuleFix[]
+        | IterableIterator<TSESLint.RuleFix>;
+    }) => void,
+    getId: () => string
+  ) => void;
 };
 
 export type Output = {
