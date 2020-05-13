@@ -35,7 +35,7 @@
   "scripts": {
     "preinstall": "node -e \"!process.env.npm_config_user_agent.startsWith('pnpm/') && !console.log('Use https://pnpm.js.org/ to install dependencies in this repository\\n') && process.exit(1)\"",
     "postinstall": "preconstruct dev && manypkg check",
-    "version": "changeset version && pnpm install",
+    "version": "changeset version && pnpm install --frozen-lockfile=false",
     "release": "preconstruct build && changeset publish",
     "start": "cd test-project && pnpm run start",
     "test": "jest",

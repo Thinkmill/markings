@@ -28,10 +28,10 @@ type RecordOfMarkings = { [id: string]: MarkingType };
 
 type ProviderProps = {
   children: ReactNode;
-  config: ConfigType;
+  // config: ConfigType;
 };
 
-export const MarkingProvider = ({ children, config }: ProviderProps) => {
+export const MarkingProvider = ({ children }: ProviderProps) => {
   const [notes, setNotes] = useState<RecordOfMarkings>({});
 
   const ctx: ContextType = useMemo(() => {
@@ -49,9 +49,7 @@ export const MarkingProvider = ({ children, config }: ProviderProps) => {
   return (
     <MarkingContext.Provider value={ctx}>
       {children}
-      {typeof window !== "undefined" && (
-        <MarkingPanel config={config} notes={notes} />
-      )}
+      {typeof window !== "undefined" && <MarkingPanel notes={notes} />}
     </MarkingContext.Provider>
   );
 };

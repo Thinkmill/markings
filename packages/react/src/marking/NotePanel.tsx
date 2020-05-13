@@ -23,13 +23,7 @@ import { Purpose } from "@markings/types";
 /**
  * Renders all of the UI to do with viewing the list of notes.
  */
-export const MarkingPanel = ({
-  config,
-  notes,
-}: {
-  config: ConfigType;
-  notes: TItems;
-}) => {
+export const MarkingPanel = ({ notes }: { notes: TItems }) => {
   const [activeElement, setActiveElement] = useState<HTMLElement | null>(null);
   const {
     isOpen,
@@ -94,12 +88,12 @@ export const MarkingPanel = ({
                 <GroupTitle>{purpose}</GroupTitle>
                 <ul css={{ listStyle: "none", margin: 0, padding: 0 }}>
                   {items.map((item) => {
-                    const href = item.issue
-                      ? config.resolveIssuePath(item.issue)
-                      : config.resolveIssueCreatePath(item);
-                    const anchorTitle = item.issue
-                      ? "Go to related issue"
-                      : "Create an issue for this note";
+                    // const href = item.issue
+                    //   ? config.resolveIssuePath(item.issue)
+                    //   : config.resolveIssueCreatePath(item);
+                    // const anchorTitle = item.issue
+                    //   ? "Go to related issue"
+                    //   : "Create an issue for this note";
 
                     return (
                       <Item
@@ -108,17 +102,15 @@ export const MarkingPanel = ({
                         onMouseLeave={itemMouseLeve}
                       >
                         <ItemAnchor
-                          href={href}
+                          // href={href}
                           rel="noopener noreferrer"
                           target="_blank"
-                          title={anchorTitle}
+                          // title={anchorTitle}
                         >
                           <ItemBody>
                             <p>{item.description}</p>
                           </ItemBody>
-                          <ItemSymbol>
-                            {item.issue && `#${item.issue}`}
-                          </ItemSymbol>
+                          <ItemSymbol>{item.issue}</ItemSymbol>
                         </ItemAnchor>
                       </Item>
                     );
@@ -356,8 +348,8 @@ const Item = (props: HTMLAttributes<HTMLLIElement>) => (
     {...props}
   />
 );
-const ItemAnchor = (props: AllHTMLAttributes<HTMLAnchorElement>) => (
-  <a
+const ItemAnchor = (props: AllHTMLAttributes<HTMLDivElement>) => (
+  <div
     css={{
       alignItems: "flex-start",
       color: color.N600,
