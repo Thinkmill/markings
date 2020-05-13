@@ -1,6 +1,6 @@
 {
   "name": "@markings/source-react",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "main": "dist/source-react.cjs.js",
   "module": "dist/source-react.esm.js",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "@babel/runtime": "^7.8.7",
     "@babel/traverse": "^7.8.6",
     "@babel/types": "^7.8.6",
-    "@markings/test-utils": "^0.0.0",
+    "@markings/test-utils": "^0.0.1",
     "@markings/types": "^0.0.6",
     "@types/babel__traverse": "^7.0.9"
   }

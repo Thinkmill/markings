@@ -1,5 +1,14 @@
 # @markings/test-project
 
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`d58bc1f`](https://github.com/Thinkmill/markings/commit/d58bc1f587c92a7c595ba062196fc74a8f7ea7a9), [`d58bc1f`](https://github.com/Thinkmill/markings/commit/d58bc1f587c92a7c595ba062196fc74a8f7ea7a9)]:
+  - @markings/react@0.1.0
+  - @markings/source-react@0.1.0
+  - @markings/source-comments@0.0.7
+
 ## 1.0.12
 
 ### Patch Changes

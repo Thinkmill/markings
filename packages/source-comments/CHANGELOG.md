@@ -1,5 +1,12 @@
 # @markings/source-comments
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`a417548`](https://github.com/Thinkmill/markings/commit/a4175484f2af47e9db1f17677e6d8a33066267e7)]:
+  - @markings/test-utils@0.0.1
+
 ## 0.0.6
 
 ### Patch Changes

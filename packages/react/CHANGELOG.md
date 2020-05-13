@@ -1,5 +1,11 @@
 # @markings/react
 
+## 0.1.0
+
+### Minor Changes
+
+- [`d58bc1f`](https://github.com/Thinkmill/markings/commit/d58bc1f587c92a7c595ba062196fc74a8f7ea7a9) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `@markings/react-note` to `@markings/react`
+
 ## 0.0.4
 
 ### Patch Changes
