@@ -1,5 +1,14 @@
 # @markings/cli
 
+## 0.0.11
+
+### Patch Changes
+
+- [`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update dependencies
+
+- Updated dependencies [[`844ce8a`](https://github.com/Thinkmill/markings/commit/844ce8a4b005d167c187f8890f3e0eb8d75978ea)]:
+  - @markings/types@0.0.7
+
 ## 0.0.10
 
 ### Patch Changes

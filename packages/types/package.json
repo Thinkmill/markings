@@ -1,6 +1,6 @@
 {
   "name": "@markings/types",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/types.cjs.js",
   "module": "dist/types.esm.js",
   "license": "MIT",
