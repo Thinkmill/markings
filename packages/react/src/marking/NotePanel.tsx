@@ -30,8 +30,7 @@ export const MarkingPanel = ({
   config: ConfigType;
   notes: TItems;
 }) => {
-  const blanketElement = useRef<HTMLElement>(null);
-  const [activeNote, setActiveNote] = useState<string | null>(null);
+  const [activeElement, setActiveElement] = useState<HTMLElement | null>(null);
   const {
     isOpen,
     openPopover,
@@ -41,13 +40,9 @@ export const MarkingPanel = ({
   } = usePopover("top-end");
 
   const itemMouseEnter = (id: string) => () => {
-    setActiveNote(id);
-
-    const el = document.querySelector(`[data-react-note-id="${id}"]`);
-
+    const el = document.querySelector(`[data-marking-id="${id}"]`);
     if (el) {
-      // @ts-ignore
-      blanketElement.current = el;
+      setActiveElement(el as HTMLElement);
 
       el.scrollIntoView({
         behavior: "smooth",
@@ -57,9 +52,7 @@ export const MarkingPanel = ({
     }
   };
   const itemMouseLeve = () => {
-    setActiveNote(null);
-    // @ts-ignore
-    blanketElement.current = null;
+    setActiveElement(null);
   };
 
   if (typeof document === "undefined") {
@@ -150,7 +143,7 @@ export const MarkingPanel = ({
         {isOpen ? <CrossIcon /> : <PinIcon size={24} />}
         {/* {noteCount} */}
       </Fab>
-      {blanketElement.current && <Blanket element={blanketElement.current} />}
+      {activeElement && <Blanket element={activeElement} />}
     </Fragment>,
     document.body
   );
@@ -491,7 +484,12 @@ const Blanket = ({ element }: BlanketProps) => {
     return null;
   }
 
-  const rect = element.getBoundingClientRect();
+  // we need to use a range here because getBoundingClientRect() on an element with display: contents will have 0 on all the things
+  // (markings have display: contents because we don't want the elements to affect layout and etc.)
+  const range = document.createRange();
+  range.selectNodeContents(element);
+
+  const rect = range.getBoundingClientRect();
   // const style = window.getComputedStyle(element);
   // const rounding = {
   //   borderBottomLeftRadius: style['border-bottom-left-radius'],

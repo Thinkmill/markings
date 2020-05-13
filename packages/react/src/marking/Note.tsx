@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import { jsx } from "@emotion/core";
+import hashString from "@emotion/hash";
 
 import {
   MarkingContext,
@@ -35,13 +36,7 @@ export const MarkingProvider = ({ children, config }: ProviderProps) => {
 
   const ctx: ContextType = useMemo(() => {
     return {
-      register: (note) => {
-        const id = generateUID(note);
-
-        if (id in notes) {
-          return;
-        }
-
+      register: (id, note) => {
         setNotes((currentNotes) => ({ ...currentNotes, [id]: note }));
         return id;
       },
@@ -54,7 +49,9 @@ export const MarkingProvider = ({ children, config }: ProviderProps) => {
   return (
     <MarkingContext.Provider value={ctx}>
       {children}
-      <MarkingPanel config={config} notes={notes} />
+      {typeof window !== "undefined" && (
+        <MarkingPanel config={config} notes={notes} />
+      )}
     </MarkingContext.Provider>
   );
 };
@@ -67,48 +64,22 @@ export const Marking = ({
   ...props
 }: MarkingType & { children: ReactNode }) => {
   const { register, unregister } = useMarkingRegistry();
-  const noteId = useRef<string>();
+  // TODO: notes should have a unique id and we should use that instead
+  const id = useMemo(
+    () => hashString(JSON.stringify(props)),
+    Object.values(props)
+  );
 
   useEffect(() => {
-    const id = register(props);
-    if (id) {
-      noteId.current = id;
-      return () => {
-        unregister(id);
-        noteId.current = undefined;
-      };
-    }
+    register(id, props);
+    return () => {
+      unregister(id);
+    };
   }, []);
 
   return (
-    <div data-react-note-id={noteId.current} style={{ position: "relative" }}>
+    <div data-marking-id={id} style={{ display: "contents" }}>
       {children}
     </div>
   );
 };
-
-// Utils
-// ------------------------------
-
-/** Takes an object, typically props, and returns a unique string. */
-function uidClosure() {
-  let counter = 1;
-
-  const map = new WeakMap<any, number>();
-
-  const uid = (item: any, index?: number): string => {
-    if (typeof item === "number" || typeof item === "string") {
-      return index ? `idx-${index}` : `val-${item}`;
-    }
-
-    if (!map.has(item)) {
-      map.set(item, counter++);
-      return uid(item);
-    }
-    return "uid" + map.get(item);
-  };
-
-  return uid;
-}
-
-const generateUID = uidClosure();

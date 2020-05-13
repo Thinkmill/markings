@@ -22,7 +22,7 @@ export type ConfigType = {
   resolvePrPath: (id: IssueId) => string;
 };
 export type ContextType = {
-  register: (props: MarkingType) => string | undefined;
+  register: (id: string, props: MarkingType) => string | undefined;
   unregister: (id: string) => void;
 };
 

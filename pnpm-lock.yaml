@@ -105,6 +105,7 @@ importers:
     dependencies:
       '@babel/runtime': 7.8.7
       '@emotion/core': 10.0.28_react@16.13.0
+      '@emotion/hash': 0.8.0
       '@markings/types': 'link:../types'
       '@popperjs/core': 2.0.6
     devDependencies:
@@ -115,6 +116,7 @@ importers:
     specifiers:
       '@babel/runtime': ^7.8.7
       '@emotion/core': ^10.0.28
+      '@emotion/hash': ^0.8.0
       '@markings/types': ^0.0.6
       '@popperjs/core': ^2.0.6
       '@types/react': ^16.9.23

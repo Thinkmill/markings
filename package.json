@@ -37,7 +37,7 @@
     "postinstall": "preconstruct dev && manypkg check",
     "version": "changeset version && pnpm install",
     "release": "preconstruct build && changeset publish",
-    "test-gatsby": "cd test-gatsby && gatsby develop",
+    "start": "cd test-project && pnpm run start",
     "test": "jest",
     "types": "tsc"
   }
