@@ -6,18 +6,18 @@
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/react",
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.8.7",
     "@emotion/core": "^10.0.28",
-    "@popperjs/core": "^2.0.6",
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
-    "@markings/types": "^0.0.6"
+    "@markings/types": "^0.0.6",
+    "@popperjs/core": "^2.0.6"
   },
   "peerDependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
   "devDependencies": {
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   }

@@ -6,8 +6,8 @@
   "license": "MIT",
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/types",
   "dependencies": {
-    "@babel/types": "^7.8.6",
     "@babel/traverse": "^7.8.6",
+    "@babel/types": "^7.8.7",
     "@types/babel__traverse": "^7.0.9"
   }
 }

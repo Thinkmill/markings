@@ -52,5 +52,6 @@
         "filename": "output.html"
       }
     ]
-  }
+  },
+  "repository": "https://github.com/Thinkmill/markings/tree/master/test-project"
 }
