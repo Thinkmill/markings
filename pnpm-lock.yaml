@@ -88,10 +88,11 @@ importers:
       '@babel/runtime': 7.8.7
       '@emotion/core': 10.0.28_react@16.13.0
       '@markings/types': 'link:../types'
-      '@types/react': 16.9.23
-      '@types/react-dom': 16.9.5
       react: 16.13.0
       react-dom: 16.13.0_react@16.13.0
+    devDependencies:
+      '@types/react': 16.9.23
+      '@types/react-dom': 16.9.5
     specifiers:
       '@babel/runtime': ^7.8.7
       '@emotion/core': ^10.0.28
@@ -3020,6 +3021,7 @@ packages:
   /@types/react-dom/16.9.5:
     dependencies:
       '@types/react': 16.9.23
+    dev: true
     resolution:
       integrity: sha512-BX6RQ8s9D+2/gDhxrj8OW+YD4R+8hj7FEM/OJHGNR0KipE1h1mSsf39YeyC81qafkq+N3rU3h3RFbLSwE5VqUg==
   /@types/react/16.9.23:
