@@ -1,5 +1,11 @@
 # @markings/react
 
+## 0.2.0
+
+### Minor Changes
+
+- [`e74d039`](https://github.com/Thinkmill/markings/commit/e74d039995cdd85f5d5de3fc8023cd1650e4d157) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Add enabled prop to MarkingProvider
+
 ## 0.1.1
 
 ### Patch Changes
