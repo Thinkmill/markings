@@ -1,5 +1,13 @@
 # @markings/test-project
 
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [[`414dbc1`](https://github.com/Thinkmill/markings/commit/414dbc10cc2f07ec59dae3f612cf8f24fe6b84ce)]:
+  - @markings/output-html@0.1.0
+  - @markings/react@0.3.0
+
 ## 1.0.16
 
 ### Patch Changes
