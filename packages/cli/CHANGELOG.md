@@ -1,5 +1,11 @@
 # @markings/cli
 
+## 0.0.12
+
+### Patch Changes
+
+- [`cd3b380`](https://github.com/Thinkmill/markings/commit/cd3b380a1689e4f680b9daafd5685edd675a1a2f) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Support Bitbucket when getting urls to markings
+
 ## 0.0.11
 
 ### Patch Changes
