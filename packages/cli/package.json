@@ -1,6 +1,6 @@
 {
   "name": "@markings/cli",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
   "license": "MIT",

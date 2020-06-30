@@ -1,5 +1,12 @@
 # @markings/test-project
 
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`cd3b380`](https://github.com/Thinkmill/markings/commit/cd3b380a1689e4f680b9daafd5685edd675a1a2f)]:
+  - @markings/cli@0.0.12
+
 ## 1.0.15
 
 ### Patch Changes
