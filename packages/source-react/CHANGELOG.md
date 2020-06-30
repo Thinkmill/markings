@@ -1,5 +1,11 @@
 # @markings/source-react-note
 
+## 0.1.2
+
+### Patch Changes
+
+- [`0ae730f`](https://github.com/Thinkmill/markings/commit/0ae730fd8242b2e8db5f41fcaa9f8c2eb433f6ee) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix `@markings/source-react` to work with `@markings/react`
+
 ## 0.1.1
 
 ### Patch Changes
