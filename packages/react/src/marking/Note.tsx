@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { ReactNode, useEffect, useState, useMemo } from "react";
+import { ReactNode, useEffect, useState, ReactElement, useMemo } from "react";
 
 import { jsx } from "@emotion/core";
 import hashString from "@emotion/hash";
@@ -59,10 +59,10 @@ export const MarkingProvider = ({
 export const Marking = ({
   children,
   ...props
-}: MarkingType & { children: ReactNode }) => {
+}: MarkingType & { children: ReactNode }): ReactElement => {
   const { register, unregister, enabled } = useMarkingRegistry();
   if (!enabled) {
-    return children;
+    return children as any;
   }
   // TODO: notes should have a unique id and we should use that instead
   const id = useMemo(
