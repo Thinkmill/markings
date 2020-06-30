@@ -1,4 +1,3 @@
-// @flow
 import * as logger from "./logger";
 import fs from "fs-extra";
 import nodePath from "path";
@@ -8,7 +7,7 @@ import {
   Marking,
   Source,
   Output,
-  PartialMarking
+  PartialMarking,
 } from "@markings/types";
 import mod from "module";
 import globby from "globby";
@@ -17,7 +16,10 @@ import { transform, PluginObj } from "@babel/core";
 import { getPackages, Package } from "@manypkg/get-packages";
 // @ts-ignore
 import { visitors as visitorsUtils, Visitor } from "@babel/traverse";
+// @ts-ignore
+import parseBitbucketUrl from "parse-bitbucket-url";
 import parseGithubUrl from "parse-github-url";
+import normalizePath from "normalize-path";
 
 let parserPlugins: ParserPlugin[] = [
   "asyncGenerators",
@@ -32,7 +34,7 @@ let parserPlugins: ParserPlugin[] = [
   "throwExpressions",
   "nullishCoalescingOperator",
   "optionalChaining",
-  "decorators-legacy"
+  "decorators-legacy",
 ];
 
 function getPackageFromFilename(
@@ -88,11 +90,11 @@ function getPackageFromFilename(
   };
 
   await Promise.all(
-    config.sources.map(async sourceConfig => {
+    config.sources.map(async (sourceConfig) => {
       let result = await globby(sourceConfig.include, {
         cwd,
         absolute: true,
-        ignore: ["**/node_modules/**/*"]
+        ignore: ["**/node_modules/**/*"],
       });
 
       for (let filename of result) {
@@ -112,26 +114,33 @@ function getPackageFromFilename(
       getUrl = (filename, line) => {
         return `https://github.com/${parsed.owner}/${parsed.name}/blob/master/${filename}#L${line}`;
       };
+    } else {
+      let bitbucketParsed = parseBitbucketUrl(
+        (pkgs.root.packageJson as any).repository
+      );
+      getUrl = (filename, line) => {
+        return `https://bitbucket.org/${bitbucketParsed.owner}/${bitbucketParsed.name}/src/${bitbucketParsed.branch}/${filename}#lines-${line}`;
+      };
     }
   }
-  let packagesByDirectory = new Map(pkgs.packages.map(x => [x.dir, x]));
+  let packagesByDirectory = new Map(pkgs.packages.map((x) => [x.dir, x]));
   // TODO: do extraction work in worker threads
   await Promise.all(
     [...sourcesByFilename.entries()].map(async ([filename, sources]) => {
-      let visitorsArray = [...sources].map(x => req(x).source.visitor);
+      let visitorsArray = [...sources].map((x) => req(x).source.visitor);
 
       let visitor: Visitor = visitorsUtils.merge(
         visitorsArray,
-        [...sources].map(source => ({
+        [...sources].map((source) => ({
           addMarking: (marking: PartialMarking) => {
             markings.push({
               location: {
                 line: marking.location.line,
                 filename,
                 link: getUrl(
-                  nodePath.relative(pkgs.root.dir, filename),
+                  normalizePath(nodePath.relative(pkgs.root.dir, filename)),
                   marking.location.line
-                )
+                ),
               },
               description: marking.description,
               source: source,
@@ -140,9 +149,9 @@ function getPackageFromFilename(
                 filename,
                 packagesByDirectory
               ).packageJson.name,
-              purpose: marking.purpose
+              purpose: marking.purpose,
             });
-          }
+          },
         }))
       );
       let contents = await fs.readFile(filename, "utf8");
@@ -156,26 +165,26 @@ function getPackageFromFilename(
         parserOpts: {
           plugins: parserPlugins.concat(
             /\.tsx?$/.test(filename) ? "typescript" : "flow"
-          )
+          ),
         },
         plugins: [
           (): PluginObj => {
             return {
-              visitor
+              visitor,
             };
-          }
-        ]
+          },
+        ],
       });
     })
   );
   await Promise.all(
-    config.outputs.map(async outputConfig => {
+    config.outputs.map(async (outputConfig) => {
       let plugin: Output = req(outputConfig.output).output;
       let output = await plugin.getFile(markings);
       await fs.writeFile(outputConfig.filename, output);
     })
   );
-})().catch(err => {
+})().catch((err) => {
   console.log("yes");
   if (err instanceof ExitError) {
     process.exit(err.code);

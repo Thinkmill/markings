@@ -16,6 +16,7 @@
     "@markings/types": "^0.0.7",
     "@types/babel__core": "^7.1.6",
     "@types/babel__traverse": "^7.0.9",
+    "@types/normalize-path": "^3.0.0",
     "@types/parse-github-url": "^1.0.0",
     "chalk": "^2.4.2",
     "fs-extra": "^8.1.0",
@@ -23,6 +24,7 @@
     "meow": "^5.0.0",
     "normalize-path": "^3.0.0",
     "p-limit": "^2.2.1",
+    "parse-bitbucket-url": "^0.3.0",
     "parse-github-url": "^1.0.2"
   },
   "devDependencies": {

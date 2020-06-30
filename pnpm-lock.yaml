@@ -40,6 +40,7 @@ importers:
       '@markings/types': 'link:../types'
       '@types/babel__core': 7.1.6
       '@types/babel__traverse': 7.0.9
+      '@types/normalize-path': 3.0.0
       '@types/parse-github-url': 1.0.0
       chalk: 2.4.2
       fs-extra: 8.1.0
@@ -47,6 +48,7 @@ importers:
       meow: 5.0.0
       normalize-path: 3.0.0
       p-limit: 2.2.2
+      parse-bitbucket-url: 0.3.0
       parse-github-url: 1.0.2
     devDependencies:
       fixturez: 1.1.0
@@ -60,6 +62,7 @@ importers:
       '@markings/types': ^0.0.7
       '@types/babel__core': ^7.1.6
       '@types/babel__traverse': ^7.0.9
+      '@types/normalize-path': ^3.0.0
       '@types/parse-github-url': ^1.0.0
       chalk: ^2.4.2
       fixturez: ^1.1.0
@@ -68,6 +71,7 @@ importers:
       meow: ^5.0.0
       normalize-path: ^3.0.0
       p-limit: ^2.2.1
+      parse-bitbucket-url: ^0.3.0
       parse-github-url: ^1.0.2
       strip-ansi: ^6.0.0
   packages/output-csv:
@@ -2996,6 +3000,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-E6M6N0blf/jiZx8Q3nb0vNaswQeEyn0XlupO+xN6DtJ6r6IT4nXrTry7zhIfYvFCl3/8Cu6WIysmUBKiqV0bqQ==
+  /@types/normalize-path/3.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-Nd8y/5t/7CRakPYiyPzr/IAfYusy1FkcZYFEAcoMZkwpJv2n4Wm+olW+e7xBdHEXhOnWdG9ddbar0gqZWS4x5Q==
   /@types/parse-github-url/1.0.0:
     dependencies:
       '@types/node': 13.9.1
@@ -8328,6 +8336,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-jkMYn1dcJqF6d5CpU689bq7w/b5ALS9ROVSpQDPrZsqqesUJii9qutvoT5ltGedNXMO2e16YUWIghG9KxaViTQ==
+  /parse-bitbucket-url/0.3.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-+s7Dvuv87EImVWXkkIGhB1m7uhc=
   /parse-github-url/1.0.2:
     dev: false
     engines:
