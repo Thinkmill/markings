@@ -1,5 +1,11 @@
 # @markings/output-html
 
+## 0.1.0
+
+### Minor Changes
+
+- [`414dbc1`](https://github.com/Thinkmill/markings/commit/414dbc10cc2f07ec59dae3f612cf8f24fe6b84ce) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Change some dependencies
+
 ## 0.0.9
 
 ### Patch Changes

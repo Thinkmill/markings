@@ -1,6 +1,6 @@
 {
   "name": "@markings/output-html",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "main": "dist/output-html.cjs.js",
   "module": "dist/output-html.esm.js",
   "files": [
