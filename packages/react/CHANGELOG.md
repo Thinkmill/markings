@@ -1,5 +1,11 @@
 # @markings/react
 
+## 0.2.1
+
+### Patch Changes
+
+- [`fd2f9bd`](https://github.com/Thinkmill/markings/commit/fd2f9bd877c88bd0ae19bd5374fb67d1d830ca4f) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix the return type of `Marking`
+
 ## 0.2.0
 
 ### Minor Changes
