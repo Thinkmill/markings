@@ -22,6 +22,7 @@ export type ConfigType = {
   resolvePrPath: (id: IssueId) => string;
 };
 export type ContextType = {
+  enabled: boolean;
   register: (id: string, props: MarkingType) => string | undefined;
   unregister: (id: string) => void;
 };

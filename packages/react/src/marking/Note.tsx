@@ -1,13 +1,6 @@
 /** @jsx jsx */
 
-import {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-} from "react";
+import { ReactNode, useEffect, useState, useMemo } from "react";
 
 import { jsx } from "@emotion/core";
 import hashString from "@emotion/hash";
@@ -15,7 +8,6 @@ import hashString from "@emotion/hash";
 import {
   MarkingContext,
   MarkingType,
-  ConfigType,
   useMarkingRegistry,
   ContextType,
 } from "./NoteContext";
@@ -28,14 +20,19 @@ type RecordOfMarkings = { [id: string]: MarkingType };
 
 type ProviderProps = {
   children: ReactNode;
+  enabled?: boolean;
   // config: ConfigType;
 };
 
-export const MarkingProvider = ({ children }: ProviderProps) => {
+export const MarkingProvider = ({
+  children,
+  enabled = true,
+}: ProviderProps) => {
   const [notes, setNotes] = useState<RecordOfMarkings>({});
 
   const ctx: ContextType = useMemo(() => {
     return {
+      enabled,
       register: (id, note) => {
         setNotes((currentNotes) => ({ ...currentNotes, [id]: note }));
         return id;
@@ -44,12 +41,14 @@ export const MarkingProvider = ({ children }: ProviderProps) => {
         setNotes(({ [id]: unusedValue, ...restNotes }) => restNotes);
       },
     };
-  }, []);
+  }, [enabled]);
 
   return (
     <MarkingContext.Provider value={ctx}>
       {children}
-      {typeof window !== "undefined" && <MarkingPanel notes={notes} />}
+      {typeof window !== "undefined" && enabled && (
+        <MarkingPanel notes={notes} />
+      )}
     </MarkingContext.Provider>
   );
 };
@@ -61,7 +60,10 @@ export const Marking = ({
   children,
   ...props
 }: MarkingType & { children: ReactNode }) => {
-  const { register, unregister } = useMarkingRegistry();
+  const { register, unregister, enabled } = useMarkingRegistry();
+  if (!enabled) {
+    return children;
+  }
   // TODO: notes should have a unique id and we should use that instead
   const id = useMemo(
     () => hashString(JSON.stringify(props)),
