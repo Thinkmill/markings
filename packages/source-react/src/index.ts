@@ -26,7 +26,10 @@ export const source: Source = {
   type: "babel",
   visitor: {
     JSXOpeningElement(path, { addMarking }) {
-      if (t.isJSXIdentifier(path.node.name) && path.node.name.name === "Note") {
+      if (
+        t.isJSXIdentifier(path.node.name) &&
+        path.node.name.name === "Marking"
+      ) {
         let description: string | undefined;
         let purpose: Purpose | undefined;
 
