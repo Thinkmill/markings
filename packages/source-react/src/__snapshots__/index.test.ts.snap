@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`with-purpose 1`] = `
-<Note description="something" purpose="question" />;
+<Marking description="something" purpose="question" />;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -17,7 +17,7 @@ exports[`with-purpose 1`] = `
 `;
 
 exports[`without-purpose 1`] = `
-<Note description="something" />;
+<Marking description="something" />;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
