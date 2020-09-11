@@ -15,6 +15,15 @@ import { MarkingPanel } from "./NotePanel";
 
 type RecordOfMarkings = { [id: string]: MarkingType };
 
+type MarkingProps = {
+  'data-marking-id'?: string
+};
+
+type MarkingChildCompOrFunc = { children: ReactNode }
+  | { children: (markingProps: MarkingProps) => ReactNode };
+
+type MarkingComponentType = MarkingType & MarkingChildCompOrFunc;
+
 // Provider
 // ------------------------------
 
@@ -59,10 +68,14 @@ export const MarkingProvider = ({
 export const Marking = ({
   children,
   ...props
-}: MarkingType & { children: ReactNode }): ReactElement => {
+}: MarkingComponentType): ReactElement => {
   const { register, unregister, enabled } = useMarkingRegistry();
   if (!enabled) {
-    return children as any;
+    if (typeof children === 'function') {
+      return children({}) as any;
+    } else {
+      return children as any;
+    }
   }
   // TODO: notes should have a unique id and we should use that instead
   const id = useMemo(
@@ -77,9 +90,13 @@ export const Marking = ({
     };
   }, []);
 
-  return (
-    <div data-marking-id={id} style={{ display: "contents" }}>
-      {children}
-    </div>
-  );
+  if (typeof children === 'function') {
+    return children({ 'data-marking-id': id }) as any;
+  } else {
+    return (
+      <div data-marking-id={id} style={{ display: "contents" }}>
+        {children}
+      </div>
+    );
+  }
 };

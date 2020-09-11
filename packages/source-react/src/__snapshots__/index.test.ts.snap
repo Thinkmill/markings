@@ -1,5 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`with-child-comp 1`] = `
+<Marking description="something" purpose="question">
+  <span>Hi</span>
+</Marking>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "something",
+    "purpose": "question",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
+
+exports[`with-child-func 1`] = `
+<Marking description="something" purpose="question">
+  {(props) => <span {...props}>Hi</span>}
+</Marking>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "something",
+    "purpose": "question",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
+
 exports[`with-purpose 1`] = `
 <Marking description="something" purpose="question" />;
 

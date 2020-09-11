@@ -17,3 +17,12 @@ code {
 img {
   max-width: 100%;
 }
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack > *:not(style) ~ *:not(style) {
+  margin-top: 1rem;
+}
