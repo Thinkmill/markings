@@ -1,5 +1,16 @@
 # @markings/test-project
 
+## 1.1.0
+
+### Minor Changes
+
+- [`8443983`](https://github.com/Thinkmill/markings/commit/8443983d78b35637c1666fc1e643eab4bbb28908) [#28](https://github.com/Thinkmill/markings/pull/28) Thanks [@jesstelford](https://github.com/jesstelford)! - Introduce function-as-a-child for React <Marking> component which doesn't require injecting { display: 'contents' }
+
+### Patch Changes
+
+- Updated dependencies [[`8443983`](https://github.com/Thinkmill/markings/commit/8443983d78b35637c1666fc1e643eab4bbb28908)]:
+  - @markings/react@0.4.0
+
 ## 1.0.17
 
 ### Patch Changes
