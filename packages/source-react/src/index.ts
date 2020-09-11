@@ -39,7 +39,7 @@ export const source: Source = {
               description = getValueFromJSXAttribute(attribute);
             }
             if (attribute.node.name.name === "purpose") {
-              purpose = getValueFromJSXAttribute(attribute) as Purpose;
+              purpose = (getValueFromJSXAttribute(attribute) || "").toLowerCase() as Purpose;
               if (!PURPOSES.includes(purpose)) {
                 throw attribute.buildCodeFrameError(
                   `Purpose must be one of ${PURPOSES.join(", ")}`
