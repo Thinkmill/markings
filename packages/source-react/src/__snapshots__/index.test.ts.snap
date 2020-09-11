@@ -36,7 +36,23 @@ exports[`with-child-func 1`] = `
 ]
 `;
 
-exports[`with-purpose 1`] = `
+exports[`with-purpose-fixme 1`] = `
+<Marking description="something" purpose="fixme" />;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "something",
+    "purpose": "fixme",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
+
+exports[`with-purpose-question 1`] = `
 <Marking description="something" purpose="question" />;
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -45,6 +61,22 @@ exports[`with-purpose 1`] = `
   {
     "description": "something",
     "purpose": "question",
+    "location": {
+      "line": 1
+    }
+  }
+]
+`;
+
+exports[`with-purpose-todo 1`] = `
+<Marking description="something" purpose="todo" />;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[
+  {
+    "description": "something",
+    "purpose": "todo",
     "location": {
       "line": 1
     }
