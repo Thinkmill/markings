@@ -1,6 +1,5 @@
 ---
 "@markings/react": minor
-"@markings/source-react": minor
 "@markings/test-project": minor
 ---
 
