@@ -1,5 +1,12 @@
 # @markings/output-json
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`bb5c58f`](https://github.com/Thinkmill/markings/commit/bb5c58f8f9018900574f68d7057482d067467273)]:
+  - @markings/types@0.1.0
+
 ## 0.0.7
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @markings/types
 
+## 0.1.0
+
+### Minor Changes
+
+- [`bb5c58f`](https://github.com/Thinkmill/markings/commit/bb5c58f8f9018900574f68d7057482d067467273) [#30](https://github.com/Thinkmill/markings/pull/30) Thanks [@jesstelford](https://github.com/jesstelford)! - Add support for `fixme` purpose in react sources, and `FIXME` in comment
+  sources.
+
 ## 0.0.7
 
 ### Patch Changes
