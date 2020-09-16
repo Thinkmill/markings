@@ -1,7 +1,12 @@
-import { Source } from "@markings/types";
+import { Source, RecordOfPurposes } from "@markings/types";
 import * as BabelTypes from "@babel/types";
 
-let commentTypes = ["TODO", "FIXME", "QUESTION"];
+let commentPurposes: RecordOfPurposes = {
+  TODO: "todo",
+  FIXME: "fixme",
+  QUESTION: "question"
+};
+let commentTypes = Object.keys(commentPurposes);
 
 export const source: Source = {
   type: "babel",
@@ -16,7 +21,7 @@ export const source: Source = {
           if (match !== null && commentTypes.includes(match[1])) {
             addMarking({
               description: match[2].trim(),
-              purpose: match[1] === "QUESTION" ? "question" : "todo",
+              purpose: commentPurposes[match[1]],
               location: {
                 line: comment.loc.start.line
               }

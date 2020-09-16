@@ -8,7 +8,7 @@ exports[`fixme 1`] = `
 [
   {
     "description": "something",
-    "purpose": "todo",
+    "purpose": "fixme",
     "location": {
       "line": 1
     }

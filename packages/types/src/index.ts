@@ -1,8 +1,10 @@
 import { Visitor } from "@babel/traverse";
 
-export const PURPOSES = ["question", "todo"] as const;
+export const PURPOSES = ["question", "todo", "fixme"] as const;
 
 export type Purpose = typeof PURPOSES[number];
+
+export type RecordOfPurposes = { [index: string]: Purpose};
 
 export type PartialMarking = {
   location: {
