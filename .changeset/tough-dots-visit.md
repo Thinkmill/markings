@@ -1,6 +1,6 @@
 ---
 "@markings/output-html": minor
-"@markings/react": major
+"@markings/react": minor
 ---
 
 Use emotion 11
