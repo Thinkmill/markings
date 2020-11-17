@@ -1,6 +1,6 @@
 {
   "name": "@markings/react",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "main": "dist/react.cjs.js",
   "module": "dist/react.esm.js",
   "license": "MIT",

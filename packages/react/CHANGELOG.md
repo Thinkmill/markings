@@ -1,5 +1,11 @@
 # @markings/react
 
+## 0.5.0
+
+### Minor Changes
+
+- [`0070e0a`](https://github.com/Thinkmill/markings/commit/0070e0a305bdff69e85c41d0f1989329fc9fc330) [#34](https://github.com/Thinkmill/markings/pull/34) Thanks [@nathsimpson](https://github.com/nathsimpson)! - Use emotion 11
+
 ## 0.4.1
 
 ### Patch Changes
