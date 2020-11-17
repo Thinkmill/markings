@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { AllHTMLAttributes, Fragment, HTMLAttributes, useRef } from "react";
-import { jsx } from "@emotion/core";
+import { jsx } from "@emotion/react";
 
 import { color, radii, spacing, elevation } from "./tokens";
 

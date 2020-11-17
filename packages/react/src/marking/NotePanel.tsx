@@ -11,7 +11,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { jsx } from "@emotion/core";
+import { jsx } from "@emotion/react";
 
 import { color, elevation, radii, spacing } from "../tokens";
 import { CrossIcon, PinIcon } from "../icons";
