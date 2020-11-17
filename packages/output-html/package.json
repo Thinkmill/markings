@@ -11,7 +11,7 @@
   "repository": "https://github.com/Thinkmill/markings/tree/master/packages/output-html",
   "dependencies": {
     "@babel/runtime": "^7.8.7",
-    "@emotion/core": "^10.0.28",
+    "@emotion/react": "^11.0.0",
     "@markings/types": "^0.1.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
