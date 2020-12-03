@@ -1,5 +1,14 @@
 # @markings/output-json
 
+## 0.0.9
+
+### Patch Changes
+
+- [`77cda5d`](https://github.com/Thinkmill/markings/commit/77cda5dd6002a52c80e2fd2888303c050c0afa4e) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use updated @markings/types
+
+- Updated dependencies [[`77cda5d`](https://github.com/Thinkmill/markings/commit/77cda5dd6002a52c80e2fd2888303c050c0afa4e)]:
+  - @markings/types@0.2.0
+
 ## 0.0.8
 
 ### Patch Changes

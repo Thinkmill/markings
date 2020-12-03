@@ -1,6 +1,6 @@
 {
   "name": "@markings/cli",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "dist/cli.cjs.js",
   "module": "dist/cli.esm.js",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "@babel/runtime": "^7.8.7",
     "@babel/traverse": "^7.8.6",
     "@manypkg/get-packages": "^1.0.0",
-    "@markings/types": "^0.1.0",
+    "@markings/types": "^0.2.0",
     "@types/babel__core": "^7.1.6",
     "@types/babel__traverse": "^7.0.9",
     "@types/normalize-path": "^3.0.0",

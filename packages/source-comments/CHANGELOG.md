@@ -1,5 +1,15 @@
 # @markings/source-comments
 
+## 0.1.1
+
+### Patch Changes
+
+- [`77cda5d`](https://github.com/Thinkmill/markings/commit/77cda5dd6002a52c80e2fd2888303c050c0afa4e) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use updated @markings/types
+
+- Updated dependencies [[`77cda5d`](https://github.com/Thinkmill/markings/commit/77cda5dd6002a52c80e2fd2888303c050c0afa4e), [`77cda5d`](https://github.com/Thinkmill/markings/commit/77cda5dd6002a52c80e2fd2888303c050c0afa4e)]:
+  - @markings/test-utils@0.0.4
+  - @markings/types@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes

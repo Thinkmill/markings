@@ -1,5 +1,11 @@
 # @markings/types
 
+## 0.2.0
+
+### Minor Changes
+
+- [`77cda5d`](https://github.com/Thinkmill/markings/commit/77cda5dd6002a52c80e2fd2888303c050c0afa4e) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Move `Source` type out of main entrypoint and to `@markings/types/source` because `@markings/types` is used by the front-end packages but they do not use the `Source` type and the `Source` type uses a type from Babel and type-checking `@babel/types` takes multiple seconds.
+
 ## 0.1.0
 
 ### Minor Changes
