@@ -1,10 +1,12 @@
-import { Source, RecordOfPurposes } from "@markings/types";
+import { RecordOfPurposes } from "@markings/types";
+import { Source } from "@markings/types/source";
+
 import * as BabelTypes from "@babel/types";
 
 let commentPurposes: RecordOfPurposes = {
   TODO: "todo",
   FIXME: "fixme",
-  QUESTION: "question"
+  QUESTION: "question",
 };
 let commentTypes = Object.keys(commentPurposes);
 
@@ -23,14 +25,14 @@ export const source: Source = {
               description: match[2].trim(),
               purpose: commentPurposes[match[1]],
               location: {
-                line: comment.loc.start.line
-              }
+                line: comment.loc.start.line,
+              },
             });
           }
         } else {
           // TODO: source from block comments(potentially with a jsdoc style) too
         }
       }
-    }
-  }
+    },
+  },
 };

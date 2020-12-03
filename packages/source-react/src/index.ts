@@ -1,4 +1,5 @@
-import { Source, Purpose, PURPOSES } from "@markings/types";
+import { Purpose, PURPOSES } from "@markings/types";
+import { Source } from "@markings/types/source";
 import * as t from "@babel/types";
 import { NodePath } from "@babel/traverse";
 

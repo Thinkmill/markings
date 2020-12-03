@@ -1,10 +1,8 @@
-import { Visitor } from "@babel/traverse";
-
 export const PURPOSES = ["question", "todo", "fixme"] as const;
 
 export type Purpose = typeof PURPOSES[number];
 
-export type RecordOfPurposes = { [index: string]: Purpose};
+export type RecordOfPurposes = { [index: string]: Purpose };
 
 export type PartialMarking = {
   location: {
@@ -24,13 +22,6 @@ export type Marking = {
   description: string;
   source: string;
   package: string;
-};
-
-export type Source = {
-  type: "babel";
-  visitor: Visitor<{
-    addMarking: (marking: PartialMarking) => void;
-  }>;
 };
 
 export type Output = {

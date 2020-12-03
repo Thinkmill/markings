@@ -2,13 +2,7 @@ import * as logger from "./logger";
 import fs from "fs-extra";
 import nodePath from "path";
 import { ExitError } from "./errors";
-import {
-  Config,
-  Marking,
-  Source,
-  Output,
-  PartialMarking,
-} from "@markings/types";
+import { Config, Marking, Output, PartialMarking } from "@markings/types";
 import mod from "module";
 import globby from "globby";
 import { ParserPlugin } from "@babel/parser";

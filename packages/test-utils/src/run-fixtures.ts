@@ -1,6 +1,7 @@
 import jestInCase from "jest-in-case";
 import * as babel from "@babel/core";
-import { Source, PartialMarking } from "@markings/types";
+import { PartialMarking } from "@markings/types";
+import { Source } from "@markings/types/source";
 import fs from "fs";
 import path from "path";
 import { promisify } from "util";
@@ -13,8 +14,8 @@ const readFile = promisify(fs.readFile);
 const separator = "\n      ↓ ↓ ↓ ↓ ↓ ↓\n\n";
 
 expect.addSnapshotSerializer({
-  test: x => x && x.___raw,
-  serialize: val => val.___raw
+  test: (x) => x && x.___raw,
+  serialize: (val) => val.___raw,
 });
 
 let parserPlugins = [
@@ -30,14 +31,14 @@ let parserPlugins = [
   "throwExpressions",
   "nullishCoalescingOperator",
   "optionalChaining",
-  "decorators-legacy"
+  "decorators-legacy",
 ] as const;
 
 function getFixtures(dirname: string) {
   const fixturesFolder = path.join(dirname, "__fixtures__");
   return fs
     .readdirSync(fixturesFolder)
-    .map(base => path.join(fixturesFolder, base));
+    .map((base) => path.join(fixturesFolder, base));
 }
 
 export const snapshotMarkingsFromFixtures = (
@@ -58,7 +59,7 @@ export const snapshotMarkingsFromFixtures = (
     accum[path.parse(testTitle).name] = {
       filename,
       only,
-      skip
+      skip,
     };
     return accum;
   }, {} as any);
@@ -76,8 +77,8 @@ export const snapshotMarkingsFromFixtures = (
           {
             addMarking: (marking: PartialMarking) => {
               markings.push(marking);
-            }
-          }
+            },
+          },
         ]
       );
       babel.transformSync(code, {
@@ -89,19 +90,19 @@ export const snapshotMarkingsFromFixtures = (
           plugins: parserPlugins.concat(
             // @ts-ignore
             /\.tsx?$/.test(opts.filename) ? "typescript" : "flow"
-          )
+          ),
         },
         plugins: [
           (): PluginObj => {
             return {
-              visitor
+              visitor,
             };
-          }
-        ]
+          },
+        ],
       });
 
       expect({
-        ___raw: `${code}${separator}${JSON.stringify(markings, null, 2)}`
+        ___raw: `${code}${separator}${JSON.stringify(markings, null, 2)}`,
       }).toMatchSnapshot();
     },
     cases

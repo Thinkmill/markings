@@ -9,5 +9,11 @@
     "@babel/traverse": "^7.8.6",
     "@babel/types": "^7.8.7",
     "@types/babel__traverse": "^7.0.9"
+  },
+  "preconstruct": {
+    "entrypoints": [
+      "index.ts",
+      "source.ts"
+    ]
   }
 }
